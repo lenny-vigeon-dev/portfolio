@@ -1,1 +1,28 @@
 @import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Configuration Tailwind v4 avec @theme */
+@theme {
+    --breakpoint-fhd: 120rem;
+    --breakpoint-fhdp: 120.1rem;
+    --breakpoint-2k: 160rem;
+    --breakpoint-2kp: 160.1rem;
+    --breakpoint-uhd: 240rem;
+    --breakpoint-uhdp: 240.1rem;
+
+    --color-dbg: #1a1a30;
+    --color-dbg2: #101030;
+    --color-dtext: white;
+    --color-dtextr: black;
+
+    --from-dgrad: "blue-600";
+    --to-dgrad: "to-purple-600";
+
+    --color-lbg: #fff0c0;
+    --color-lbg2: #f0f0f0;
+    --color-ltext: black;
+    --color-ltextr: white;
+    --from-lgrad: "from-blue-600";
+    --to-lgrad: "to-purple-600";
+}
