@@ -10,4 +10,8 @@ declare global {
 	}
 }
 
+// Ensure proper Svelte 5 types are available
+/// <reference types="svelte" />
+/// <reference types="@sveltejs/kit" />
+
 export {};

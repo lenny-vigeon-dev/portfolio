@@ -1,6 +1,6 @@
 import "$/app.css"
 
-export const primary_gradient = " bg-gradient-to-r from-red-600 to-purple-600 dark:from-blue-600 dark:to-purple-600 ";
+export const primary_gradient = " bg-gradient-to-r from-red-500 to-purple-600 dark:from-blue-600 dark:to-purple-600 ";
 export const primary_gradient_border = " border-transparent " + primary_gradient;
 export const colored_title = " bg-clip-text text-transparent mb-6 font-bold " + primary_gradient;
 export const animated500 = " animate-in slide-in-from-bottom-4 duration-500 ";

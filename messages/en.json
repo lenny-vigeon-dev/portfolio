@@ -1,0 +1,11 @@
+{
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"hello_world": "Hello, {name} from en!",
+    "theme_dark": "Dark theme",
+    "theme_light": "Light theme",
+    "me_title": "AI Machine Learning + Fullstack Developer",
+    "me_mission": "Building intelligent applications that bridge the gap between cutting-edge AI and scalable web technologies",
+    "me_contact": "Get in touch",
+    "me_resume": "Download resume"
+
+}
