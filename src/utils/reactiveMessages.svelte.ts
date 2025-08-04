@@ -15,24 +15,23 @@ export function createReactiveMessages() {
         });
     }
 
-    // Create a proxy that wraps all message functions to be reactive
-    return new Proxy(m, {
-        get(target, prop, receiver) {
-            const originalValue = Reflect.get(target, prop, receiver);
+    // Create reactive wrappers for each message function
+    const reactiveMessages = {} as typeof m;
 
-            // If it's a function (i.e., a message function), wrap it to be reactive
-            if (typeof originalValue === 'function') {
-                return (...args: any[]) => {
-                    // Reference updateTrigger to make this reactive
-                    updateTrigger;
-                    return originalValue(...args);
-                };
-            }
-
-            // For non-function properties, return as-is
-            return originalValue;
+    for (const key in m) {
+        const originalFunction = (m as any)[key];
+        if (typeof originalFunction === 'function') {
+            (reactiveMessages as any)[key] = (...args: any[]) => {
+                // Reference updateTrigger to make this reactive
+                updateTrigger;
+                return originalFunction(...args);
+            };
+        } else {
+            (reactiveMessages as any)[key] = originalFunction;
         }
-    }) as typeof m;
+    }
+
+    return reactiveMessages;
 }
 
 /**

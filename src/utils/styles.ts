@@ -1,15 +1,6 @@
 import "$/app.css"
 
-export const lcol1 = "from-red-600"
-export const lcol2 = "to-orange-600"
-export const dcol1 = "from-blue-600"
-export const dcol2 = "to-purple-600"
-export const space_lcol1 = " " + lcol1 + " "
-export const space_lcol2 = " " + lcol2 + " "
-export const space_dcol1 = " " + dcol1 + " "
-export const space_dcol2 = " " + dcol2 + " "
-export const primary_gradient = " bg-gradient-to-r"+ space_lcol1 + space_lcol2 +
-    " dark:" + dcol1 + " dark:" + dcol2 + " ";
+export const primary_gradient = " bg-gradient-to-r from-red-600 to-orange-600 dark:bg-gradient-to-r dark:from-blue-600 dark:to-purple-600 ";
 export const primary_gradient_border = " border-transparent " + primary_gradient;
 export const colored_title = " bg-clip-text text-transparent mb-6 font-bold " + primary_gradient;
 export const animated500 = " animate-in slide-in-from-bottom-4 duration-500 ";
