@@ -11,18 +11,22 @@
     --breakpoint-uhd: 240rem;
     --breakpoint-uhdp: 240.1rem;
 
+    --color-lcol1: #E7000B;
+    --color-lcol2: #F54900;
+    --color-lcol3: #FF6900;
+    --color-dcol1: #175DFC;
+    --color-dcol2: #9610F7;
+    --color-dcol3: #AD46FF;
+
     --color-dbg: #1a1a30;
     --color-dbg2: #101030;
-    --color-dtext: white;
+    --color-dtext: #cccccc;
     --color-dtextr: black;
 
-    --from-dgrad: "blue-600";
-    --to-dgrad: "to-purple-600";
-
-    --color-lbg: #fff0c0;
-    --color-lbg2: #f0f0f0;
-    --color-ltext: black;
+    --color-lbg: #fffdf6;
+    --color-lbg2: #fff;
+    --color-ltext: #555555;
     --color-ltextr: white;
 
-    
+
 }

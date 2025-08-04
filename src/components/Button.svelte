@@ -7,23 +7,48 @@
 
     interface ButtonProps {
         text: string;
-        logo?: Component;
         onclick?: () => void;
+        href?: string;
+        target?: string;
+        main?: any;
     }
 
-    let { text, logo, onclick }: ButtonProps = $props(); // Destructuration correcte
-    const Logo: Component | undefined = logo; // Utilisation de la variable destructurée
+    let { text, onclick, href, target, main }: ButtonProps = $props();
+
+    // Handle click to remove focus after clicking
+    function handleClick(event: MouseEvent) {
+        if (onclick) {
+            onclick();
+        }
+        // Only remove focus for mouse clicks, not keyboard navigation
+        if (event.detail !== 0) {
+            (event.currentTarget as HTMLButtonElement).blur();
+        }
+    }
+
+    const parentStyle: string = primary_gradient + " rounded-md flex group";
+    const divStyle: string = "m-0.25 gap-4 flex-3 px-5 py-2 \
+        inline-flex items-center rounded-md \
+        hover:bg-transparent group-focus-within:bg-transparent \
+        bg-lbg2 dark:bg-dbg2 active:bg-lbg2/30 dark:active:bg-dbg2/30 \
+        dark:hover:text-dtextr hover:text-ltextr \
+        group-focus-within:dark:text-dtextr group-focus-within:text-ltextr \
+        text-sm text-lcol2 dark:text-dcol3 \
+        transition-all duration-300";
 </script>
 
-<button class={primary_gradient + " rounded-md"} {onclick}>
-    <div class={"m-0.5 gap-2 h-10 px-6 \
-    inline-flex items-center rounded-md \
-    bg-lbg2 dark:bg-dbg2 hover:bg-transparent active:bg-lbg2/30 dark:active:bg-dbg2/30 \
-    text-sm text-purple-600 dark:hover:text-dtextr hover:text-ltextr \
-    transition-all duration-300"}>
-        {#if Logo}
-            <Logo />
-        {/if}
-        {text}
-    </div>
-</button>
+{#if href}
+    <a {href} {target} class={parentStyle}>
+        <div class={divStyle}>
+            {@render main?.()}
+            {text}
+        </div>
+    </a>
+{:else}
+    <button class={parentStyle} onclick={handleClick}>
+        <div class={divStyle}>
+            {@render main?.()}
+            {text}
+        </div>
+    </button>
+{/if}
