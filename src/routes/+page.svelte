@@ -35,13 +35,11 @@
 
 <section class={"transition-colors duration-300 min-h-screen relative flex justify-between flex-col bg-lbg dark:bg-dbg text-lt3 dark:text-dt3 "}>
     <AnimatedBackground />
-    <div class="inset-0">
-        <div class="p-5 justify-end flex gap-2">
-            <ThemeButton bind:darkMode={darkMode} />
-            <SelectLanguage />
-        </div>
+    <div class="relative p-5 justify-end flex gap-2">
+        <ThemeButton bind:darkMode={darkMode} />
+        <SelectLanguage />
     </div>
-    <div class="relative z-10 container mx-auto px-4 text-center flex flex-col items-center">
+    <div class="relative container mx-auto px-4 text-center flex flex-col items-center">
         <h1 class={colored_title + h1_sizes + animated500 + "mb-1"}>{rm.me_title()}</h1>
         <div class="max-w-4xl flex flex-col justify-center items-center">
             <p class={p_font_sizes + animated500 + p_width + "mb-8"}>{rm.me_mission()}</p>
