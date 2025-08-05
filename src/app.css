@@ -5,11 +5,13 @@
 /* Configuration Tailwind v4 avec @theme */
 @theme {
     --breakpoint-fhd: 120rem;
-    --breakpoint-fhdp: 120.1rem;
+    --breakpoint-fhdp: 120.01rem;
     --breakpoint-2k: 160rem;
-    --breakpoint-2kp: 160.1rem;
+    --breakpoint-2kp: 160.01rem;
     --breakpoint-uhd: 240rem;
-    --breakpoint-uhdp: 240.1rem;
+    --breakpoint-uhdp: 240.01rem;
+
+    --size-8xl: 2000rem;
 
     --color-lcol1: #E7000B;
     --color-lcol2: #F54900;
@@ -20,13 +22,20 @@
 
     --color-dbg: #1a1a30;
     --color-dbg2: #101030;
-    --color-dtext: #cccccc;
-    --color-dtextr: black;
+    --color-dbg3: #1a151c;
+    --color-dbg4: #22222a;
+    --color-dbg5: #1e1e25;
+    --color-dt1: white;
+    --color-dt2: black;
+    --color-dt3: #cccccc;
 
-    --color-lbg: #fffdf6;
-    --color-lbg2: #fff;
-    --color-ltext: #555555;
-    --color-ltextr: white;
-
+    --color-lbg: #fffafa;
+    --color-lbg2: white;
+    --color-lbg3: white;
+    --color-lbg4: #fafaf8;
+    --color-lbg5: white;
+    --color-lt1: black;
+    --color-lt2: white;
+    --color-lt3: #555555;
 
 }

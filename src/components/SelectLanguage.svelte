@@ -9,7 +9,7 @@
     import { detectAndSetBrowserLanguage, getCurrentLocale, switchLanguage, onLanguageChange } from '$utils/languageDetection';
 
     let currentLanguage: string = $state('en');
-    const optionClass = "text-sm dark:text-dtext text-ltext duration-300 bg-lbg2 dark:bg-dbg2";
+    const optionClass = "text-sm dark:text-dt3 text-lt3 duration-300 bg-lbg2 dark:bg-dbg2";
 
 
     onMount(() => {

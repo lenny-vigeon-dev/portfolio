@@ -31,8 +31,8 @@
         inline-flex items-center rounded-md \
         hover:bg-transparent group-focus-within:bg-transparent \
         bg-lbg2 dark:bg-dbg2 active:bg-lbg2/30 dark:active:bg-dbg2/30 \
-        dark:hover:text-dtextr hover:text-ltextr \
-        group-focus-within:dark:text-dtextr group-focus-within:text-ltextr \
+        dark:hover:text-dt2 hover:text-lt2 \
+        group-focus-within:dark:text-dt2 group-focus-within:text-lt2 \
         text-sm text-lcol2 dark:text-dcol3 \
         transition-all duration-300";
 </script>

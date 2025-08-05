@@ -5,8 +5,12 @@
         colored_title,
         animated500,
         h1_sizes,
+        h3_sizes,
+        h4_sizes,
         p_font_sizes,
-        p_width
+        p_font_sizes2,
+        p_width,
+        p_width2
     } from "$utils/styles";
     import JumpingMouse from "$components/JumpingMouse.svelte";
     import Button from "$components/Button.svelte";
@@ -14,6 +18,7 @@
     import ThemeButton from "$components/ThemeButton.svelte";
     import SelectLanguage from "$components/SelectLanguage.svelte";
     import AnimatedBackground from "$components/AnimatedBackground.svelte";
+    import TextCard from "$components/TextCard.svelte";
 
     import Email from "$components/logos/Email.svelte";
     import Linkedin from "$components/logos/Linkedin.svelte";
@@ -28,7 +33,7 @@
 </script>
 
 
-<section class={"transition-colors duration-300 h-screen relative flex justify-between flex-col bg-lbg dark:bg-dbg text-ltext dark:text-dtext "}>
+<section class={"transition-colors duration-300 min-h-screen relative flex justify-between flex-col bg-lbg dark:bg-dbg text-lt3 dark:text-dt3 "}>
     <AnimatedBackground />
     <div class="inset-0">
         <div class="p-5 justify-end flex gap-2">
@@ -36,10 +41,10 @@
             <SelectLanguage />
         </div>
     </div>
-    <div class="relative z-10 container mx-auto px-4 text-center">
+    <div class="relative z-10 container mx-auto px-4 text-center flex flex-col items-center">
         <h1 class={colored_title + h1_sizes + animated500 + "mb-1"}>{rm.me_title()}</h1>
-        <div class="max-w-4xl mx-auto">
-            <p class={p_font_sizes + animated500 + p_width + "mb-8 mx-auto"}>{rm.me_mission()}</p>
+        <div class="max-w-4xl flex flex-col justify-center items-center">
+            <p class={p_font_sizes + animated500 + p_width + "mb-8"}>{rm.me_mission()}</p>
             <div class="flex flex-wrap justify-center gap-4 mb-12 animate-in slide-in-from-bottom-4 duration-1000 delay-400">
                 <Button text={rm.me_contact()}>
                     {#snippet main()}
@@ -55,12 +60,12 @@
             <div class="flex justify-center gap-10 animate-in slide-in-from-bottom-4 duration-1000 delay-600">
                 <ZoomButton href="https://github.com/Linnchoeuh" target="_blank">
                     {#snippet main()}
-                        <Github size={32} _class="text-ltext dark:text-dtext" />
+                        <Github size={32} _class="text-lt3 dark:text-dt3" />
                     {/snippet}
                 </ZoomButton>
                 <ZoomButton href="https://www.linkedin.com/in/lenny-vigeon/" target="_blank">
                     {#snippet main()}
-                        <Linkedin size={32} _class="text-ltext dark:text-dtext" />
+                        <Linkedin size={32} _class="text-lt3 dark:text-dt3" />
                     {/snippet}
                 </ZoomButton>
             </div>
@@ -69,30 +74,32 @@
     <JumpingMouse />
 </section>
 
-<section class="py-20 px-4 bg-lbg dark:bg-dbg text-ltext dark:text-dtext transition-colors duration-300 relative flex justify-between flex-col">
-    <div class="container mx-auto max-w-6xl">
-        <div class="text-center mb-16">
-            <h2 class={colored_title + h1_sizes + animated500}>About Me</h2>
-            <p class="text-lg text-muted-foreground max-w-3xl mx-auto">I'm a passionate developer who bridges the gap between traditional software development and cutting-edge artificial intelligence. With expertise in both fullstack web development and AI technologies, I create intelligent applications that solve real-world problems.</p>
-        </div>
-        <div class="bg-gradient-secondary rounded-2xl p-8 md:p-12">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h3 class="text-3xl font-bold mb-6 text-foreground">My Journey</h3>
-                    <p class="text-muted-foreground mb-6">Started as a web developer, I discovered my passion for AI and machine learning. This unique combination allows me to build applications that are not just functional, but intelligent and adaptive.</p>
-                    <p class="text-muted-foreground">I specialize in creating end-to-end solutions that leverage the power of modern web technologies combined with AI capabilities, from natural language processing to computer vision and predictive analytics.</p>
-                </div>
-                <div class="space-y-6">
-                    <div class="bg-card/30 backdrop-blur rounded-lg p-6 border border-border/30">
-                        <h4 class="text-xl font-semibold mb-2 text-foreground">Philosophy</h4>
-                        <p class="text-muted-foreground">"Technology should augment human capabilities, not replace them. I build AI solutions that empower users and solve meaningful problems."</p>
-                    </div>
-                    <div class="bg-card/30 backdrop-blur rounded-lg p-6 border border-border/30">
-                        <h4 class="text-xl font-semibold mb-2 text-foreground">Approach</h4>
-                        <p class="text-muted-foreground">"Clean code, scalable architecture, and user-centered design are the foundation of every project I work on."</p>
-                    </div>
-                </div>
+<section class="py-20 px-auto \
+bg-lbg3 dark:bg-dbg3 text-lt3 dark:text-dt3 \
+transition-all duration-300 \
+relative flex flex-col">
+<div class="mx-auto transition-all duration-200 \
+max-w-[90%] md:max-w-[80%] 2xl:max-w-[70%] fhdp:max-w-[60%] 2kp:max-w-[50%] uhdp:max-w-[40%]">
+    <div class="text-center mb-16">
+        <h2 class={colored_title + h1_sizes + animated500}>About Me</h2>
+        <p class={p_font_sizes2 + animated500 + p_width2 + " mx-auto"}>I'm a passionate developer who bridges the gap between traditional software development and cutting-edge artificial intelligence. With expertise in both fullstack web development and AI technologies, I create intelligent applications that solve real-world problems.</p>
+    </div>
+    <div class="bg-lbg4 dark:bg-dbg4 rounded-2xl p-8 md:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h3 class={h3_sizes + " text-lt1 dark:text-dt1 font-bold mb-6"}>My Journey</h3>
+                <p class={"text-muted-foreground mb-6" + p_font_sizes2 + animated500}>Started as a web developer, I discovered my passion for AI and machine learning. This unique combination allows me to build applications that are not just functional, but intelligent and adaptive.</p>
+                <p class={"text-muted-foreground"  + p_font_sizes2 + animated500}>I specialize in creating end-to-end solutions that leverage the power of modern web technologies combined with AI capabilities, from natural language processing to computer vision and predictive analytics.</p>
+            </div>
+            <div class="space-y-6">
+                <TextCard title="Philosophy"
+                content="Technology should augment human capabilities, not replace them. I build AI solutions that empower users and solve meaningful problems."
+                />
+                <TextCard title="Approach"
+                content="Clean code, scalable architecture, and user-centered design are the foundation of every project I work on."
+                />
             </div>
         </div>
     </div>
+</div>
 </section>
