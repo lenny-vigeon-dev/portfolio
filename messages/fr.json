@@ -7,5 +7,15 @@
     "me_mission": "Créer des applications intelligentes qui font le pont entre l'IA de pointe et les technologies web évolutives",
     "me_contact": "Me contacter",
     "me_resume": "Télécharger le CV",
-    "cv_pdf": "cv_fr.pdf"
+    "cv_pdf": "cv_fr.pdf",
+
+    "about_me": "À propos de moi",
+    "about_me_content": "Je suis un développeur passionné qui fait le pont entre le développement logiciel traditionnel et l'intelligence artificielle de pointe. Avec une expertise en développement web fullstack et en technologies IA, je crée des applications intelligentes qui résolvent des problèmes concrets.",
+    "journey": "Mon parcours",
+    "journey_content1": "J'ai commencé comme développeur web, découvrant ma passion pour l'IA et le machine learning. Cette combinaison unique me permet de construire des applications qui ne sont pas seulement fonctionnelles, mais intelligentes et adaptatives.",
+    "journey_content2": "Je me spécialise dans la création de solutions de bout en bout qui tirent parti de la puissance des technologies web modernes combinées aux capacités de l'IA.",
+    "philosophy": "Philosophie",
+    "philosophy_content": "Ayant commencé comme développeur de bas niveau, j'ai découvert ma passion pour l'IA/apprentissage automatique et le développement web en cherchant à élargir mes compétences. Cette combinaison unique me permet de construire des applications qui ne sont pas seulement fonctionnelles, mais intelligentes et adaptatives. Avec une expertise supplémentaire sur la performance et la sécurité des types grâce à mon expérience en programmation de bas niveau.",
+    "approach": "Approche",
+    "approach_content": "Un code propre, une architecture évolutive et un design centré sur l'utilisateur sont les fondements de chaque projet sur lequel je travaille."
 }

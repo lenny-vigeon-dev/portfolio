@@ -81,22 +81,22 @@ relative flex flex-col">
 <div class="mx-auto transition-all duration-200 \
 max-w-[90%] md:max-w-[80%] 2xl:max-w-[70%] fhdp:max-w-[60%] 2kp:max-w-[50%] uhdp:max-w-[40%]">
     <div class="text-center mb-16">
-        <h2 class={colored_title + h1_sizes + animated500}>About Me</h2>
-        <p class={p_font_sizes2 + animated500 + p_width2 + " mx-auto"}>I'm a passionate developer who bridges the gap between traditional software development and cutting-edge artificial intelligence. With expertise in both fullstack web development and AI technologies, I create intelligent applications that solve real-world problems.</p>
+        <h2 class={colored_title + h1_sizes + animated500}>{rm.about_me()}</h2>
+        <p class={p_font_sizes2 + animated500 + p_width2 + " mx-auto"}>{rm.about_me_content()}</p>
     </div>
     <div class="bg-lbg4 dark:bg-dbg4 rounded-2xl p-8 md:p-12">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-                <h3 class={h3_sizes + " text-lt1 dark:text-dt1 font-bold mb-6"}>My Journey</h3>
-                <p class={"text-muted-foreground mb-6" + p_font_sizes2 + animated500}>Started as a web developer, I discovered my passion for AI and machine learning. This unique combination allows me to build applications that are not just functional, but intelligent and adaptive.</p>
-                <p class={"text-muted-foreground"  + p_font_sizes2 + animated500}>I specialize in creating end-to-end solutions that leverage the power of modern web technologies combined with AI capabilities, from natural language processing to computer vision and predictive analytics.</p>
+                <h3 class={h3_sizes + " text-lt1 dark:text-dt1 font-bold mb-6"}>{rm.journey()}</h3>
+                <p class={"text-muted-foreground mb-6" + p_font_sizes2 + animated500}>{rm.journey_content1()}</p>
+                <p class={"text-muted-foreground"  + p_font_sizes2 + animated500}>{rm.journey_content2()}</p>
             </div>
             <div class="space-y-6">
-                <TextCard title="Philosophy"
-                content="Technology should augment human capabilities, not replace them. I build AI solutions that empower users and solve meaningful problems."
+                <TextCard title={rm.philosophy()}
+                content={rm.philosophy_content()}
                 />
-                <TextCard title="Approach"
-                content="Clean code, scalable architecture, and user-centered design are the foundation of every project I work on."
+                <TextCard title={rm.approach()}
+                content={rm.approach_content()}
                 />
             </div>
         </div>

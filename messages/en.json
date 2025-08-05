@@ -7,5 +7,15 @@
     "me_mission": "Building intelligent applications that bridge the gap between cutting-edge AI and scalable web technologies",
     "me_contact": "Get in touch",
     "me_resume": "Download resume",
-    "cv_pdf": "cv_en.pdf"
+    "cv_pdf": "cv_en.pdf",
+
+    "about_me": "About Me",
+    "about_me_content": "I am a passionate developer who bridges the gap between traditional software development and cutting-edge artificial intelligence. With expertise in both fullstack web development and AI technologies, I create intelligent applications that solve real-world problems.",
+    "journey": "My Journey",
+    "journey_content1": "Started as a low-level developer, I discovered my passion for AI/machine learning and web development when I searched to broaden my skill set. This unique combination allows me to build applications that are not just functional, but intelligent and adaptive. With an additional expertise on performance and type safety with my low level programming background.",
+    "journey_content2": "I specialize in creating end-to-end solutions that leverage the power of modern web technologies combined with AI capabilities.",
+    "philosophy": "Philosophy",
+    "philosophy_content": "Technology should augment human capabilities, not replace them. I build AI solutions that empower users and solve meaningful problems.",
+    "approach": "Approach",
+    "approach_content": "Clean code, scalable architecture, and user-centered design are the foundation of every project I work on."
 }

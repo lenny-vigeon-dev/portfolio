@@ -43,5 +43,6 @@
     {#snippet main()}
         <option class={optionClass} value="en">🇺🇸 English</option>
         <option class={optionClass} value="fr">🇫🇷 Français</option>
+        <option class={optionClass} value="kr">🇰🇷 한국어</option>
     {/snippet}
 </Select>
