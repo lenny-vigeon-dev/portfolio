@@ -10,8 +10,12 @@
     --breakpoint-2kp: 160.01rem;
     --breakpoint-uhd: 240rem;
     --breakpoint-uhdp: 240.01rem;
+    --breakpoint-4k: 320rem;
+    --breakpoint-4kp: 320.01rem;
+    --breakpoint-2uhd: 480rem;
+    --breakpoint-2uhdp: 480.01rem;
 
-    --size-8xl: 2000rem;
+    --text-10xl: 12rem;
 
     --color-lcol1: #E7000B;
     --color-lcol2: #F54900;

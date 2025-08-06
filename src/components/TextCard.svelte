@@ -2,9 +2,9 @@
     import "$/app.css"
 
     import {
-        animated500,
         h4_sizes,
-        p_font_sizes2,
+        p_font_sizes_m,
+        rounded_lg
     } from "$utils/styles";
 
     interface TextCardProps {
@@ -16,7 +16,7 @@
 
 </script>
 
-<div class="rounded-lg p-6 bg-lbg5 dark:bg-dbg5">
-    <h4 class={h4_sizes + animated500 + "font-semibold mb-2 text-lt1 dark:text-dt1"}>{title}</h4>
-    <p class={p_font_sizes2 + animated500 + ""}>{content}</p>
+<div class={"p-[3%] bg-lbg5 dark:bg-dbg5" + rounded_lg}>
+    <h4 class={"font-semibold mb-2 text-lt1 dark:text-dt1" + h4_sizes}>{title}</h4>
+    <p class={p_font_sizes_m}>{content}</p>
 </div>

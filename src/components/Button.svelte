@@ -1,8 +1,10 @@
 <script lang="ts">
     import "$/app.css";
-    import type { Component } from 'svelte';
     import {
         primary_gradient,
+        rounded_md,
+        text_sm,
+        gap4
     } from "$utils/styles";
 
     interface ButtonProps {
@@ -26,15 +28,19 @@
         }
     }
 
-    const parentStyle: string = primary_gradient + " rounded-md flex group";
-    const divStyle: string = "m-0.25 gap-4 flex-3 px-5 py-2 \
-        inline-flex items-center rounded-md \
+    const parentStyle: string = "flex group" + rounded_md + primary_gradient;
+    const divStyle: string = "flex-3  \
+        m-0.25 2kp:m-0.5 2uhd:m-0.75 \
+        px-5 uhdp:px-8 4kp:px-12 2uhd:px-15 \
+        py-2 uhdp:py-5 4kp:py-7 2uhd:py-9 \
+        inline-flex items-center \
         hover:bg-transparent group-focus-within:bg-transparent \
         bg-lbg2 dark:bg-dbg2 active:bg-lbg2/30 dark:active:bg-dbg2/30 \
         dark:hover:text-dt2 hover:text-lt2 \
         group-focus-within:dark:text-dt2 group-focus-within:text-lt2 \
-        text-sm text-lcol2 dark:text-dcol3 \
-        transition-all duration-300";
+        text-lcol2 dark:text-dcol3 \
+        transition-all duration-300" +
+        rounded_md + text_sm + gap4;
 </script>
 
 {#if href}

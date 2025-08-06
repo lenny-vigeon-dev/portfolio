@@ -3,7 +3,11 @@
 	import type { Snippet } from "svelte";
     import {
         primary_gradient,
+        rounded_md,
+        text_sm,
+        svg_scale
     } from "$utils/styles";
+	import { text } from "@sveltejs/kit";
 
     interface ThemeButtonProps {
         value: any;
@@ -36,16 +40,25 @@
 
 </script>
 
-<div class={primary_gradient + "rounded-md flex relative group"}>
+<div class={"flex relative group" + rounded_md + primary_gradient}>
     <select bind:value={value} onchange={handleChange} onmousedown={handleMouseDown} onkeydown={handleKeyDown}
-    class={"rounded-md py-2 pl-6 pr-10 m-0.25 appearance-none \
-    text-sm text-lcol2 dark:text-dcol3 \
-    bg-lbg2 dark:bg-dbg2"}>
+    class={"appearance-none \
+    m-0.25 2kp:m-0.5 2uhd:m-0.75 \
+    pl-6 uhdp:pl-11 4kp:pl-16 2uhd:pl-20 \
+    pr-10 uhdp:pr-18 4kp:pr-26 2uhd:pr-35 \
+    py-2 uhdp:py-5 4kp:py-7 2uhd:py-9 \
+    text-lcol2 dark:text-dcol3 \
+    bg-lbg2 dark:bg-dbg2" +
+    rounded_md + text_sm}>
         {@render main?.() }
     </select>
 
-    <div class="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none
-                transition-transform duration-300 group-hover:rotate-180 group-focus-within:rotate-180">
+    <div class={"absolute pointer-events-none \
+    right-4 uhdp:right-7 4kp:right-11 2uhd:right-15 \
+    top-1/2 transform -translate-y-1/2  \
+    transition-transform duration-300 \
+    group-hover:rotate-180 group-focus-within:rotate-180" +
+    svg_scale}>
         <svg class="w-4 h-4 text-lcol2 dark:text-dcol3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
         </svg>

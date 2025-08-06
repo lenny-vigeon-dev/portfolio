@@ -17,5 +17,14 @@
     "philosophy": "Philosophy",
     "philosophy_content": "Technology should augment human capabilities, not replace them. I build AI solutions that empower users and solve meaningful problems.",
     "approach": "Approach",
-    "approach_content": "Clean code, scalable architecture, and user-centered design are the foundation of every project I work on."
+    "approach_content": "Clean code, scalable architecture, and user-centered design are the foundation of every project I work on.",
+
+    "technical_skills": "Technical Skills",
+    "technical_skills_content": "A comprehensive toolkit spanning modern web development and cutting-edge AI technologies.",
+    "frontend_dev": "Frontend Development",
+    "backend_dev": "Backend Development",
+    "devops_db_cloud": "DevOps, Database & Cloud",
+    "ai_ml": "AI & Machine Learning",
+    "tools_platforms": "Tools & Platforms",
+    "miscellaneous": "Miscellaneous"
 }
