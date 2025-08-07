@@ -34,11 +34,34 @@
 	import { rm } from '$utils/reactiveMessages.svelte'; // rm = reactive messages
 
 	let darkMode = $state(true);
+	let jumpingMouseOpacity = $state(1); // Initial opacity
+	let firstSection: HTMLElement; // Reference to first section
+
+	// Function to update opacity based on scroll position
+	function updateJumpingMouseOpacity() {
+		if (!firstSection) return; // Exit if section not ready
+
+		const scrollY = window.scrollY;
+		const sectionHeight = firstSection.offsetHeight;
+		const fadeDistance = sectionHeight * 0.5; // Fade over 80% of section height
+
+		// Calculate opacity: 1 at top, 0 when scrolled fadeDistance
+		const opacity = Math.max(0, 1 - (scrollY / fadeDistance));
+		jumpingMouseOpacity = opacity;
+	}
+
+	// Add scroll listener on mount
+	import { onMount } from 'svelte';
+
+	onMount(() => {
+		window.addEventListener('scroll', updateJumpingMouseOpacity);
+		return () => window.removeEventListener('scroll', updateJumpingMouseOpacity);
+	});
 </script>
 
 <div class={"bg-lbg text-lt3 transition-colors duration-300 dark:bg-dbg dark:text-dt3"}>
 
-    <section class={'relative flex min-h-screen flex-col justify-between '}>
+    <section bind:this={firstSection} class={'relative flex min-h-screen flex-col justify-between '}>
         <AnimatedBackground />
         <div class={"relative flex justify-end p-[0.75%]" + gap2}>
             <ThemeButton bind:darkMode />
@@ -78,7 +101,7 @@
                 </div>
             </div>
         </div>
-        <JumpingMouse />
+        <JumpingMouse _class="" _style="opacity: {jumpingMouseOpacity}; transition: opacity 0.3s ease-out;" />
     </section>
 
     <section class="py-[6%] \

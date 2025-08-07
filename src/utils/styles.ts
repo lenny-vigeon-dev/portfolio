@@ -24,3 +24,4 @@ export const gap10 = " gap-10 uhdp:gap-20 4kp:gap-30 2uhd:gap-40 ";
 
 export const mb10 = " mb-10 2kp:mb-[4%] ";
 export const mb12 = " mb-12 2kp:mb-[5%] ";
+export const mb20 = " mb-20 2kp:mb-[8%] ";
