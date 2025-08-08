@@ -2,7 +2,7 @@
 	import '$/app.css';
 
 	import Footer from '$components/Footer.svelte';
-	import Header from '$components/Header.svelte';
+	import Header from '$components/header.svelte';
 	import { headerVisible, sections } from '$lib/stores/ui';
 
 	// Types explicites pour les props
