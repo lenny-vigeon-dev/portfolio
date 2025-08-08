@@ -16,6 +16,38 @@
     duration-300 bg-lbg2 dark:bg-dbg2";
 
 
+
+    const enTextFull = "English";
+    const frTextFull = "Français";
+    const krTextFull = "한국어";
+
+    let enText = $state(enTextFull);
+    let frText = $state(frTextFull);
+    let krText = $state(krTextFull);
+
+    function resizeButton() {
+        if (!window) return; // Exit if section not ready
+
+		const w = window.innerWidth;
+
+        if (w < 640) {
+            enText = "en";
+            frText = "fr";
+            krText = "kr";
+        } else {
+            enText = enTextFull;
+            frText = frTextFull;
+            krText = krTextFull;
+        }
+    }
+
+    function updateLanguage(event: Event) {
+        const select = event.target as HTMLSelectElement;
+        const newLanguage = select.value;
+        switchLanguage(newLanguage);
+        // currentLanguage will be updated by the onLanguageChange callback
+    }
+
     onMount(() => {
         // Detect and set browser language on page load
         detectAndSetBrowserLanguage();
@@ -31,22 +63,19 @@
         });
 
         // Cleanup subscription on component destroy
-        return unsubscribe;
+        resizeButton();
+        window.addEventListener('resize', resizeButton);
+        return () => {
+            unsubscribe();
+            window.removeEventListener('resize', resizeButton);
+        };
     });
-
-    function updateLanguage(event: Event) {
-        const select = event.target as HTMLSelectElement;
-        const newLanguage = select.value;
-        switchLanguage(newLanguage);
-        // currentLanguage will be updated by the onLanguageChange callback
-    }
-
 </script>
 
 <Select bind:value={currentLanguage} onchange={updateLanguage}>
     {#snippet main()}
-        <option class={optionClass} value="en">🇺🇸 English</option>
-        <option class={optionClass} value="fr">🇫🇷 Français</option>
-        <option class={optionClass} value="kr">🇰🇷 한국어</option>
+        <option class={optionClass} value="en">🇺🇸 {enText}</option>
+        <option class={optionClass} value="fr">🇫🇷 {frText}</option>
+        <option class={optionClass} value="kr">🇰🇷 {krText}</option>
     {/snippet}
 </Select>

@@ -31,7 +31,7 @@
     const parentStyle: string = "flex group" + rounded_md + primary_gradient;
     const divStyle: string = "flex-3  \
         m-0.25 2kp:m-0.5 2uhd:m-0.75 \
-        px-5 uhdp:px-8 4kp:px-12 2uhd:px-15 \
+        px-2 sm:px-5 uhdp:px-8 4kp:px-12 2uhd:px-15 \
         py-2 uhdp:py-5 4kp:py-7 2uhd:py-9 \
         inline-flex items-center \
         hover:bg-transparent group-focus-within:bg-transparent \

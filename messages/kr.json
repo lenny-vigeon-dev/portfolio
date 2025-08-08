@@ -3,6 +3,11 @@
 	"hello_world": "안녕하세요, {name}님! (en에서 왔어요)",
     "theme_dark": "다크 테마",
     "theme_light": "라이트 테마",
+
+    "section_about": "소개",
+    "section_skills": "기술 스택",
+
+    "me_name": "래니 비종 - Lenny Vigeon",
     "me_title": "AI 머신러닝 + 풀스택 개발자",
     "me_mission": "최신 AI와 확장 가능한 웹 기술을 연결하는 지능형 애플리케이션 구축",
     "me_contact": "문의하기",

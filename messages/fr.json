@@ -3,6 +3,11 @@
 	"hello_world": "Bonjour, {name} depuis fr !",
     "theme_dark": "Thème sombre",
     "theme_light": "Thème clair",
+
+    "section_about": "À propos",
+    "section_skills": "Compétences",
+
+    "me_name": "Lenny Vigeon",
     "me_title": "Développeur IA Machine Learning + Fullstack",
     "me_mission": "Créer des applications intelligentes qui font le lien entre l'IA de pointe et les technologies web évolutives",
     "me_contact": "Me contacter",

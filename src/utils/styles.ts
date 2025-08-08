@@ -5,6 +5,7 @@ export const colored_title = " bg-clip-text text-transparent mb-6 font-bold " + 
 export const animated = " animate-in duration-100 transition-all ease-in-out ";
 export const text_sm = " text-sm 2kp:text-lg uhdp:text-3xl 4kp:text-4xl 2uhd:text-5xl " + animated;
 export const h1_sizes = " text-3xl sm:text-4xl md:text-5xl lg:text-6xl fhdp:text-7xl 2kp:text-8xl uhdp:text-9xl 4kp:text-10xl font-bold leading-snug " + animated;
+export const h2_sizes = " text-2xl sm:text-3xl md:text-4xl lg:text-5xl fhdp:text-6xl 2kp:text-7xl uhdp:text-8xl 4kp:text-9xl font-bold leading-snug " + animated;
 export const h3_sizes = " text-2xl md:text-3xl fhdp:text-4xl 2kp:text-5xl uhdp:text-6xl 4kp:text-7xl 2uhd:text-9xl font-bold leading-snug " + animated;
 export const h4_sizes = " text-xl md:text-2xl fhdp:text-3xl 2kp:text-4xl uhdp:text-5xl 4kp:text-6xl 2uhd:text-8xl font-bold leading-snug " + animated;
 export const p_font_sizes_l = " text-lg md:text-2xl fhdp:text-3xl 2kp:text-4xl uhdp:text-6xl 4kp:text-7xl 2uhd:text-8xl uhdp:leading-snug " + animated;

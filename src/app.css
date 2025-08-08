@@ -2,6 +2,12 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem; /* Offset pour le header fixe (80px) */
+}
+
 /* Configuration Tailwind v4 avec @theme */
 @theme {
     --breakpoint-fhd: 120rem;
@@ -29,6 +35,7 @@
     --color-dbg3: #1a151c;
     --color-dbg4: #22222a;
     --color-dbg5: #1e1e25;
+    --color-dbg6: #22222f;
     --color-dt1: white;
     --color-dt2: black;
     --color-dt3: #cccccc;
@@ -38,6 +45,7 @@
     --color-lbg3: white;
     --color-lbg4: #fafaf8;
     --color-lbg5: white;
+    --color-lbg6: #cccccc;
     --color-lt1: black;
     --color-lt2: white;
     --color-lt3: #555555;
