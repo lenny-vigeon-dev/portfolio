@@ -28,6 +28,8 @@
 	import AnimatedBackground from '$components/AnimatedBackground.svelte';
 	import TextCard from '$components/TextCard.svelte';
     import SkillCard from '$components/SkillCard.svelte';
+    import ProjectCard from '$components/ProjectCard.svelte';
+
 
 	import Email from '$components/logos/Email.svelte';
 	import Linkedin from '$components/logos/Linkedin.svelte';
@@ -39,6 +41,8 @@
 
     import { sections } from '$lib/stores/ui';
 
+    const githubUrl = 'https://github.com/Linnchoeuh';
+
 	// let darkMode = $state(true);
 	let header = $state(false); // Control header visibility
     let jumpingMouseOpacity = $state(1); // Initial opacity
@@ -47,7 +51,8 @@
         // Update sections store with reactive messages
         sections.set([
             { id: 'about', name: rm.section_about() },
-            { id: 'skills', name: rm.section_skills() }
+            { id: 'skills', name: rm.section_skills() },
+            { id: 'projects', name: rm.section_projects() }
         ]);
     });
 
@@ -117,7 +122,7 @@
             <div class={"animate-in slide-in-from-bottom-4 \
             flex justify-center" +
             gap10}>
-                <ZoomButton href="https://github.com/Linnchoeuh" target="_blank">
+                <ZoomButton href={githubUrl} target="_blank">
                     {#snippet main()}
                         <Github size={32} _class="text-lt3 dark:text-dt3" />
                     {/snippet}
@@ -134,7 +139,7 @@
 </section>
 
 <section id="about" class="py-[6%] \
-bg-lbg3/95 dark:bg-dbg3/90 \
+bg-lbg3/80 dark:bg-dbg3/90 \
 relative flex flex-col \
 transition-all duration-300">
     <div class="mx-auto max-w-[90%] md:max-w-[80%] \
@@ -169,7 +174,7 @@ transition-all duration-300">
 </section>
 
 <section id="skills" class="px-4 py-[5%] min-h-screen">
-    <div class="relative container mx-auto max-w-[80%]">
+    <div class="relative container mx-auto max-w-[90%] md:max-w-[80%]">
         <div class="mb-[4%] text-center">
             <h2 class={colored_title + h1_sizes}>{rm.technical_skills()}</h2>
             <p class={"mx-auto max-w-3xl text-lg" +
@@ -187,4 +192,64 @@ transition-all duration-300">
             <SkillCard title={rm.miscellaneous()} skills={['C', 'C++', 'TrueNAS', 'systemd',  'VSCode', 'emacs', 'vim', 'nvim', 'Unit testing', 'Functional testing']} />
         </div>
     </div>
+</section>
+
+<section id="projects" class="py-[6%] \
+bg-lbg3/80 dark:bg-dbg3/90 \
+relative flex flex-col \
+transition-all duration-300">
+	<div class="container mx-auto max-w-[90%] md:max-w-[80%]">
+		<div class="mb-16 text-center">
+			<h2 class={colored_title + h1_sizes}>{rm.featured_projects()}</h2>
+			<p class="text-muted-foreground mx-auto max-w-3xl text-lg">
+				A showcase of full-stack applications and AI solutions that demonstrate my technical
+				expertise and problem-solving capabilities
+			</p>
+		</div>
+        <!-- Spotlight Projects -->
+		<!-- <div class="mb-16 grid grid-cols-1 gap-8 lg:grid-cols-2">
+		</div> -->
+		<div
+			class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+		>
+            <ProjectCard
+                title="Real-time Collaboration Platform"
+                mainSkill="Fullstack"
+                skills={['Svelte', 'Node.js', 'TensorFlow', 'PostgreSQL', 'AWS']}
+                description="Modern workspace application with real-time editing, video conferencing, and AI-assisted content generation features."
+                githubUrl="https://github.com/yourusername/your-repo"
+                projectUrl="https://yourprojecturl.com"
+            />
+            <ProjectCard
+                title="Smart Healthcare Dashboard"
+                mainSkill="AI/ML"
+                skills={['Vue.js', 'Python', 'Scikit-learn']}
+                description="Modern workspace application with real-time editing, video conferencing, and AI-assisted content generation features."
+                githubUrl="https://github.com/yourusername/your-repo"
+                projectUrl="https://yourprojecturl.com"
+            />
+            <ProjectCard
+                title="Automated Trading Bot"
+                mainSkill="AI/ML"
+                skills={['Python', 'TensorFlow', 'Redis']}
+                description="Game jam project made in 3 days"
+                githubUrl="https://github.com/Linnchoeuh/JAM-Wurio-Wire"
+            />
+            <ProjectCard
+                title="Portfolio"
+                mainSkill="Frontend"
+                skills={['Svelte 5', 'Tailwind CSS', 'HTML5', 'TypeScript', 'Vite', 'pnpm', 'Github Actions']}
+                description="A personal portfolio showcasing my projects and skills. (The webpage you are currently viewing)"
+                githubUrl="https://github.com/lenny-vigeon-dev/portfolio"
+                projectUrl="/"
+            />
+		</div>
+		<div class="mt-12 text-center inline-flex">
+			<Button text={"View more on Github"} href={githubUrl} target="_blank">
+                {#snippet main()}
+                    <Github _class={svg_scale} />
+                {/snippet}
+            </Button>
+		</div>
+	</div>
 </section>

@@ -8,3 +8,8 @@ export interface SectionData {
     id: string;
     name: string;
 }
+
+export interface Collaborator {
+    name: string;
+    url: string;
+}

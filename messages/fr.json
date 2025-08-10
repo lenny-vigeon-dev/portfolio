@@ -6,6 +6,7 @@
 
     "section_about": "À propos",
     "section_skills": "Compétences",
+    "section_projects": "Projets",
 
     "me_name": "Lenny Vigeon",
     "me_title": "Développeur IA Machine Learning + Fullstack",
@@ -31,5 +32,7 @@
     "devops_db_cloud": "DevOps, Base de données & Cloud",
     "ai_ml": "IA & Apprentissage automatique",
     "tools_platforms": "Outils & Plateformes",
-    "miscellaneous": "Divers"
+    "miscellaneous": "Divers",
+
+    "featured_projects": "Mes projets"
 }
