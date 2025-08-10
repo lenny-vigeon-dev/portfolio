@@ -13,20 +13,20 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      
+
       # Install a modern Node on the runner for this job
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          
+          node-version: 24
+
       # Enable pnpm via corepack (bundled with Node >=16.17)
       - name: Enable pnpm
         run: |
           corepack enable
-          corepack prepare pnpm@9 --activate
+          corepack prepare pnpm@10 --activate
 
       - name: Build project
         run: |
-          pnpm install
+          pnpm install --frozen-lockfile
           pnpm run build
