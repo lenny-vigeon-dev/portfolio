@@ -19,7 +19,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'   # optional: caches pnpm store
           
       # Enable pnpm via corepack (bundled with Node >=16.17)
       - name: Enable pnpm
