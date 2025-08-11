@@ -2,9 +2,11 @@
     import "$/app.css"
 
     import {
-        primary_gradient,
+        text_sm,
         p_font_sizes_s,
-        gap2
+        gradient_div_parent,
+        gradient_div_child,
+        s
     } from "$utils/styles";
 
 
@@ -13,22 +15,21 @@
     }
 
     let { skills }: SkillTagsProps = $props();
+    const gap2: string = s("gap", 2);
 
 </script>
 
 <div class={"flex flex-wrap" + gap2}>
     {#each skills as skill}
-    <div class={primary_gradient + "rounded-full \
-    p-0.25 2kp:p-0.75 uhdp:p-1 4kp:p-1.25 2uhd:p-1.5 \
-    transition-all duration-300"}>
-        <div class="rounded-full transition-all duration-300 \
-        hover:bg-transparent bg-lbg3 dark:bg-dbg3  ">
+    <div class={gradient_div_parent +
+    "rounded-full transition-all duration-300"}>
+        <div class={"rounded-full" + gradient_div_child}>
             <div
-                class={p_font_sizes_s +
-                "inline-flex cursor-default items-center rounded-full \
-                px-2.5 pt-0.5 pb-1.5  \
+                class={text_sm +
+                "inline-flex cursor-default items-center \
+                px-2.5 pt-0.5 pb-1  \
                 4kp:px-8 4kp:pt-3 4kp:pb-5  \
-                font-semibold hover:text-lt2 hover:dark:text-dt2 \
+                text-lt1 dark:text-dt1 hover:text-lt2 hover:dark:text-dt2 \
                 transition-all duration-300"}
             >
                 {skill}

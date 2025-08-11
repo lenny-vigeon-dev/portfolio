@@ -34,5 +34,22 @@
     "tools_platforms": "Tools & Platforms",
     "miscellaneous": "Miscellaneous",
 
-    "featured_projects": "Featured Projects"
+    "collaborators": "Collaborators",
+    "featured_projects": "Featured Projects",
+    "featured_projects_content": "A showcase of full-stack applications and AI solutions that demonstrate my technical expertise and problem-solving capabilities.",
+
+    "fsl_recognizer_title": "French Sign Language Recognizer",
+    "fsl_recognizer_description": "A transformer model for recognizing French Sign Language fingerspelling (Sign Language Alphabet).",
+
+    "toobo_title": "Toobo Weather App",
+    "toobo_description": "A minimalist web application for displaying real-time weather and upcoming days for one or more given locations, stored in local storage. Designed to be fast, clear, and easy to use, with a responsive and clean design.",
+
+    "originl_description": "Development of a responsive showcase website for a reflexologist, designed to be lightweight, performant, and easy to maintain.",
+
+    "wuriowire_description": "A Game Jam project developped in 3 days.",
+
+    "portfolio_title": "Portfolio",
+    "portfolio_description": "My personal portfolio showcasing my projects and skills. (The webpage you are currently consulting)",
+
+    "view_more_on_github": "View more on GitHub"
 }

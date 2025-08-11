@@ -7,9 +7,10 @@
         target?: string;
         main?: any;
         _class?: string;
+        tabindex?: number;
     }
 
-    let { onclick, href, target, main, _class = "" }: ButtonProps = $props();
+    let { onclick, href, target, main, _class = "", tabindex = 0 }: ButtonProps = $props();
 
     // Handle click to remove focus after clicking
     function handleClick(event: MouseEvent) {
@@ -31,11 +32,11 @@
 </script>
 
 {#if href}
-    <a {href} {target} class={parentStyle}>
+    <a {href} {target} class={parentStyle} tabindex={tabindex}>
         {@render main?.()}
     </a>
 {:else}
-    <button class={parentStyle} onclick={handleClick}>
+    <button class={parentStyle} onclick={handleClick} tabindex={tabindex}>
         {@render main?.()}
     </button>
 {/if}

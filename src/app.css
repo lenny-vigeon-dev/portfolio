@@ -6,18 +6,61 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 5rem; /* Offset pour le header fixe (80px) */
+    overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+body {
+    overflow-x: hidden; /* Double security */
+    max-width: 100vw; /* Ensure body doesn't exceed viewport */
+}
+
+/* Debug overflow elements */
+* {
+    box-sizing: border-box;
 }
 
 /* Configuration Tailwind v4 avec @theme */
 @theme {
     --breakpoint-fhd: 120rem;
     --breakpoint-fhdp: 120.01rem;
+    --breakpoint-fhd2: 140rem;
+    --breakpoint-fhd2p: 140.01rem;
+
     --breakpoint-2k: 160rem;
     --breakpoint-2kp: 160.01rem;
+    --breakpoint-2k2: 180rem;
+    --breakpoint-2k2p: 180.01rem;
+    --breakpoint-2k3: 200rem;
+    --breakpoint-2k3p: 200.01rem;
+    --breakpoint-2k4: 220rem;
+    --breakpoint-2k4p: 220.01rem;
+
     --breakpoint-uhd: 240rem;
     --breakpoint-uhdp: 240.01rem;
+    --breakpoint-uhd2: 260rem;
+    --breakpoint-uhd2p: 260.01rem;
+    --breakpoint-uhd3: 280rem;
+    --breakpoint-uhd3p: 280.01rem;
+    --breakpoint-uhd4: 300rem;
+    --breakpoint-uhd4p: 300.01rem;
+
     --breakpoint-4k: 320rem;
     --breakpoint-4kp: 320.01rem;
+    --breakpoint-4k2: 340rem;
+    --breakpoint-4k2p: 340.01rem;
+    --breakpoint-4k3: 360rem;
+    --breakpoint-4k3p: 360.01rem;
+    --breakpoint-4k4: 380rem;
+    --breakpoint-4k4p: 380.01rem;
+    --breakpoint-4k5: 400rem;
+    --breakpoint-4k5p: 400.01rem;
+    --breakpoint-4k6: 420rem;
+    --breakpoint-4k6p: 420.01rem;
+    --breakpoint-4k7: 440rem;
+    --breakpoint-4k7p: 440.01rem;
+    --breakpoint-4k8: 460rem;
+    --breakpoint-4k8p: 460.01rem;
+
     --breakpoint-2uhd: 480rem;
     --breakpoint-2uhdp: 480.01rem;
 

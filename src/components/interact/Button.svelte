@@ -4,7 +4,9 @@
         primary_gradient,
         rounded_md,
         text_sm,
-        gap4
+        gradient_div_parent,
+        gradient_div_child,
+        s
     } from "$utils/styles";
 
     interface ButtonProps {
@@ -13,9 +15,10 @@
         href?: string;
         target?: string;
         main?: any;
+        tabindex?: number;
     }
 
-    let { text, onclick, href, target, main }: ButtonProps = $props();
+    let { text, onclick, href, target, main, tabindex = 0 }: ButtonProps = $props();
 
     // Handle click to remove focus after clicking
     function handleClick(event: MouseEvent) {
@@ -28,30 +31,21 @@
         }
     }
 
-    const parentStyle: string = "flex group" + rounded_md + primary_gradient;
-    const divStyle: string = "flex-3  \
-        m-0.25 2kp:m-0.5 2uhd:m-0.75 \
-        px-2 sm:px-5 uhdp:px-8 4kp:px-12 2uhd:px-15 \
-        py-2 uhdp:py-5 4kp:py-7 2uhd:py-9 \
-        inline-flex items-center \
-        hover:bg-transparent group-focus-within:bg-transparent \
-        bg-lbg2 dark:bg-dbg2 active:bg-lbg2/30 dark:active:bg-dbg2/30 \
-        dark:hover:text-dt2 hover:text-lt2 \
-        group-focus-within:dark:text-dt2 group-focus-within:text-lt2 \
-        text-lcol2 dark:text-dcol3 \
-        transition-all duration-300" +
-        rounded_md + text_sm + gap4;
+    const parentStyle: string = gradient_div_parent + rounded_md;
+    const divStyle: string = "px-2 sm:px-5 uhdp:px-8 4kp:px-12 2uhd:px-15 \
+        py-2 uhdp:py-5 4kp:py-7 2uhd:py-9" +
+        gradient_div_child + rounded_md + text_sm + s("gap", 4);
 </script>
 
 {#if href}
-    <a {href} {target} class={parentStyle}>
+    <a {href} {target} class={parentStyle} tabindex={tabindex}>
         <div class={divStyle}>
             {@render main?.()}
             {text}
         </div>
     </a>
 {:else}
-    <button class={parentStyle} onclick={handleClick}>
+    <button class={parentStyle} onclick={handleClick} tabindex={tabindex}>
         <div class={divStyle}>
             {@render main?.()}
             {text}

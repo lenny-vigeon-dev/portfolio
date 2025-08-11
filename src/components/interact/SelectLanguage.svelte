@@ -3,11 +3,7 @@
 
     import { onMount } from "svelte";
 
-	import {
-		text_sm
-	} from '$utils/styles';
-
-    import Select from "$components/Select.svelte";
+    import Select from "$components/interact/Select.svelte";
 
     import { detectAndSetBrowserLanguage, getCurrentLocale, switchLanguage, onLanguageChange } from '$utils/languageDetection';
 
@@ -70,12 +66,17 @@
             window.removeEventListener('resize', resizeButton);
         };
     });
+
+    interface SelectLanguageProps {
+        tabindex?: number;
+    }
+    let { tabindex = 0 }: SelectLanguageProps = $props();
 </script>
 
-<Select bind:value={currentLanguage} onchange={updateLanguage}>
+<Select bind:value={currentLanguage} onchange={updateLanguage} tabindex={tabindex}>
     {#snippet main()}
         <option class={optionClass} value="en">🇺🇸 {enText}</option>
         <option class={optionClass} value="fr">🇫🇷 {frText}</option>
-        <option class={optionClass} value="kr">🇰🇷 {krText}</option>
+        <!-- <option class={optionClass} value="kr">🇰🇷 {krText}</option> -->
     {/snippet}
 </Select>

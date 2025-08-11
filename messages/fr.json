@@ -34,5 +34,22 @@
     "tools_platforms": "Outils & Plateformes",
     "miscellaneous": "Divers",
 
-    "featured_projects": "Mes projets"
+    "collaborators": "Collaborateurs",
+    "featured_projects": "Mes projets",
+    "featured_projects_content": "Une vitrine d'applications full-stack et de solutions IA qui démontrent mon expertise technique et mes capacités de résolution de problèmes.",
+
+    "fsl_recognizer_title": "Reconnaisseur de Langue des Signes Française",
+    "fsl_recognizer_description": "Un modèle transformer pour reconnaître la dactylologie (Alphabet de la langue des signes française).",
+
+    "toobo_title": "Application Météo Toobo",
+    "toobo_description": "Application web minimaliste permettant d'afficher la météo en temps réel et les jours à venir pour une ou plusieurs localisations données, enregistrées en dans le stockage local. Conçue pour être rapide, claire et facile à utiliser, avec un design responsive et épuré.",
+
+    "originl_description": "Développement d'un site vitrine responsive pour une réflexologue, conçu pour être léger, performant et facile à maintenir.",
+
+    "wuriowire_description": "Un projet de Game Jam développé en 3 jours.",
+
+    "portfolio_title": "Portfolio",
+    "portfolio_description": "Mon portfolio personnel présentant mes projets et mes compétences. (La page web que vous consultez actuellement)",
+
+    "view_more_on_github": "Voir plus sur GitHub"
 }

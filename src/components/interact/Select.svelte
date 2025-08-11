@@ -9,12 +9,13 @@
     } from "$utils/styles";
 	import { text } from "@sveltejs/kit";
 
-    interface ThemeButtonProps {
+    interface SelectProps {
         value?: any;
         onchange?: (event: Event) => void;
         main: any;
+        tabindex?: number;
     }
-    let { value = $bindable(), onchange, main }: ThemeButtonProps = $props();
+    let { value = $bindable(), onchange, main, tabindex = 0 }: SelectProps = $props();
 
     let isMouseInteraction = $state(false);
 
@@ -49,7 +50,8 @@
     py-2 uhdp:py-5 4kp:py-7 2uhd:py-9 \
     text-lcol2 dark:text-dcol3 \
     bg-lbg2 dark:bg-dbg2" +
-    rounded_md + text_sm}>
+    rounded_md + text_sm}
+    tabindex={tabindex}>
         {@render main?.() }
     </select>
 

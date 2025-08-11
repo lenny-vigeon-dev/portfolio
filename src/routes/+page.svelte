@@ -12,23 +12,19 @@
 		p_font_sizes_l,
 		p_font_sizes_m,
 		p_width,
-		p_width2,
         svg_scale,
-        gap2,
-        gap4,
-        gap10,
-        mb12,
-        mb10
+        s
 	} from '$utils/styles';
 	import JumpingMouse from '$components/JumpingMouse.svelte';
-	import Button from '$components/Button.svelte';
-	import ZoomButton from '$components/ZoomButton.svelte';
-	import ThemeButton from '$components/ThemeButton.svelte';
-	import SelectLanguage from '$components/SelectLanguage.svelte';
+	import Button from '$components/interact/Button.svelte';
+	import ZoomButton from '$components/interact/ZoomButton.svelte';
+	import ThemeButton from '$components/interact/ThemeButton.svelte';
+	import SelectLanguage from '$components/interact/SelectLanguage.svelte';
 	import AnimatedBackground from '$components/AnimatedBackground.svelte';
 	import TextCard from '$components/TextCard.svelte';
     import SkillCard from '$components/SkillCard.svelte';
     import ProjectCard from '$components/ProjectCard.svelte';
+    import SectionTitle from '$components/SectionTitle.svelte';
 
 
 	import Email from '$components/logos/Email.svelte';
@@ -37,11 +33,26 @@
 	import Download from '$components/logos/Download.svelte';
 
 	import { rm } from '$utils/reactiveMessages.svelte'; // rm = reactive messages
-	import { headerVisible } from '$lib/stores/ui';
-
-    import { sections } from '$lib/stores/ui';
+	import { headerVisible, sections, headerTabIndex } from '$lib/stores/ui';
+    import { JJA, ARO } from '$utils/collaborators';
 
     const githubUrl = 'https://github.com/Linnchoeuh';
+    const beforeTabIndex: number = 1;
+	headerTabIndex.set(2);
+    const tabIndex: number = 3;
+
+    const gap2: string = s("gap", 2);
+    const gap4: string = s("gap", 4);
+    const gap6: string = s("gap", 6);
+    const gap10: string = s("gap", 10);
+    const gap12: string = s("gap", 12);
+    const mb1: string = s("mb", 1);
+    const mb12: string = s("mb", 12);
+    const mb10: string = s("mb", 10);
+    const mb14: string = s("mb", 14);
+    const mt12: string = s("mt", 12);
+    const p8: string = s("p", 8);
+    const px4: string = s("px", 4);
 
 	// let darkMode = $state(true);
 	let header = $state(false); // Control header visibility
@@ -94,26 +105,26 @@
 </script>
 
 
-<section bind:this={firstSection} class={'relative flex min-h-screen flex-col justify-between '}>
+<section bind:this={firstSection} class={'relative flex min-h-screen flex-col justify-between overflow-x-hidden '}>
     <AnimatedBackground />
     <div class={"relative flex justify-end p-[0.75%]" + gap2}>
-        <ThemeButton />
-        <SelectLanguage />
+        <ThemeButton tabindex={beforeTabIndex} />
+        <SelectLanguage tabindex={beforeTabIndex} />
     </div>
     <div class="relative container mx-auto flex flex-col items-center px-4 text-center">
-        <h2 class={h2_sizes + 'mb-1'}>{rm.me_name()}</h2>
-        <h1 class={colored_title + h1_sizes + 'mb-1'}>{rm.me_title()}</h1>
+        <h2 class={h2_sizes + mb1}>{rm.me_name()}</h2>
+        <h1 class={colored_title + h1_sizes + mb1}>{rm.me_title()}</h1>
         <div class="flex max-w-[60%] flex-col items-center justify-center">
             <p class={p_font_sizes_l + p_width + mb10}>{rm.me_mission()}</p>
             <div class={"animate-in slide-in-from-bottom-4 \
             flex flex-wrap justify-center " +
             gap4 + mb12}>
-                <Button text={rm.me_contact()}>
+                <Button text={rm.me_contact()} tabindex={beforeTabIndex}>
                     {#snippet main()}
                         <Email _class={svg_scale} />
                     {/snippet}
                 </Button>
-                <Button text={rm.me_resume()} href="/{rm.cv_pdf()}" target="_blank">
+                <Button text={rm.me_resume()} href="/{rm.cv_pdf()}" target="_blank" tabindex={beforeTabIndex}>
                     {#snippet main()}
                         <Download _class={svg_scale} />
                     {/snippet}
@@ -122,12 +133,12 @@
             <div class={"animate-in slide-in-from-bottom-4 \
             flex justify-center" +
             gap10}>
-                <ZoomButton href={githubUrl} target="_blank">
+                <ZoomButton href={githubUrl} target="_blank" tabindex={beforeTabIndex}>
                     {#snippet main()}
                         <Github size={32} _class="text-lt3 dark:text-dt3" />
                     {/snippet}
                 </ZoomButton>
-                <ZoomButton href="https://www.linkedin.com/in/lenny-vigeon/" target="_blank">
+                <ZoomButton href="https://www.linkedin.com/in/lenny-vigeon/" target="_blank" tabindex={beforeTabIndex}>
                     {#snippet main()}
                         <Linkedin size={32} _class="text-lt3 dark:text-dt3" />
                     {/snippet}
@@ -141,23 +152,17 @@
 <section id="about" class="py-[6%] \
 bg-lbg3/80 dark:bg-dbg3/90 \
 relative flex flex-col \
-transition-all duration-300">
+transition-all duration-300 overflow-x-hidden">
     <div class="mx-auto max-w-[90%] md:max-w-[80%] \
     transition-all duration-200">
-        <div class="mb-[3%] text-center">
-            <h2 class={colored_title + h1_sizes}>{rm.about_me()}</h2>
-            <p class={'mx-auto' + p_font_sizes_l + p_width2}>{rm.about_me_content()}</p>
-        </div>
-        <div class={"bg-lbg4 dark:bg-dbg4 \
-        p-8 md:p-[2%]" +
-        rounded_2xl}>
-            <div class="grid grid-cols-1 lg:grid-cols-2 items-center \
-            gap-12 2kp:gap-20 uhdp:gap-32 4kp:gap-44 2uhd:gap-56">
+        <SectionTitle title={rm.about_me()} subtitle={rm.about_me_content()} />
+        <div class={"bg-lbg4 dark:bg-dbg4" + rounded_2xl + p8}>
+            <div class={"grid grid-cols-1 lg:grid-cols-2 items-center" + gap12}>
                 <div>
-                    <h3 class={"mb-[3%] font-bold" + h3_sizes}>
+                    <h3 class={"font-bold" + h3_sizes + mb14}>
                         {rm.journey()}
                     </h3>
-                    <p class={'mb-[3%]' + p_font_sizes_m}>
+                    <p class={p_font_sizes_m + mb14}>
                         {rm.journey_content1()}
                     </p>
                     <p class={p_font_sizes_m}>
@@ -173,17 +178,10 @@ transition-all duration-300">
     </div>
 </section>
 
-<section id="skills" class="px-4 py-[5%] min-h-screen">
+<section id="skills" class={"py-[5%] min-h-screen overflow-x-hidden" + px4}>
     <div class="relative container mx-auto max-w-[90%] md:max-w-[80%]">
-        <div class="mb-[4%] text-center">
-            <h2 class={colored_title + h1_sizes}>{rm.technical_skills()}</h2>
-            <p class={"mx-auto max-w-3xl text-lg" +
-            p_width + p_font_sizes_l}>
-            {rm.technical_skills_content()}
-        </p>
-        </div>
-        <div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 \
-        gap-6 2kp:gap-10 uhdp:gap-16 4kp:gap-22 2uhd:gap-28">
+        <SectionTitle title={rm.technical_skills()} subtitle={rm.technical_skills_content()} />
+        <div class={"grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3" + gap6}>
             <SkillCard title={rm.frontend_dev()} skills={['Svelte', 'Vue.js', 'React', 'TypeScript', 'Tailwind CSS', 'JavaScript', 'HTML5', 'CSS3', 'React Native']} />
             <SkillCard title={rm.backend_dev()} skills={['Node.js', 'SvelteKit', 'Python', 'Flask', 'Express', 'REST APIs', 'Microservices']} />
             <SkillCard title={rm.devops_db_cloud()} skills={['PostgreSQL', 'MongoDB', 'MySQL', 'Docker', 'Github Actions', 'CI/CD', 'Vite']} />
@@ -194,62 +192,68 @@ transition-all duration-300">
     </div>
 </section>
 
-<section id="projects" class="py-[6%] \
+<section id="projects" class="py-[5%] \
 bg-lbg3/80 dark:bg-dbg3/90 \
 relative flex flex-col \
-transition-all duration-300">
+transition-all duration-300 overflow-x-hidden">
 	<div class="container mx-auto max-w-[90%] md:max-w-[80%]">
-		<div class="mb-16 text-center">
-			<h2 class={colored_title + h1_sizes}>{rm.featured_projects()}</h2>
-			<p class="text-muted-foreground mx-auto max-w-3xl text-lg">
-				A showcase of full-stack applications and AI solutions that demonstrate my technical
-				expertise and problem-solving capabilities
-			</p>
-		</div>
+        <SectionTitle title={rm.featured_projects()} subtitle={rm.featured_projects_content()} />
         <!-- Spotlight Projects -->
 		<!-- <div class="mb-16 grid grid-cols-1 gap-8 lg:grid-cols-2">
 		</div> -->
-		<div
-			class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
-		>
+		<div class={"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" + gap6}>
             <ProjectCard
-                title="Real-time Collaboration Platform"
-                mainSkill="Fullstack"
-                skills={['Svelte', 'Node.js', 'TensorFlow', 'PostgreSQL', 'AWS']}
-                description="Modern workspace application with real-time editing, video conferencing, and AI-assisted content generation features."
-                githubUrl="https://github.com/yourusername/your-repo"
-                projectUrl="https://yourprojecturl.com"
+                title={rm.fsl_recognizer_title()}
+                mainSkill="AI/ML/Frontend"
+                skills={['Svelte', 'Python', 'ONNX', 'Pytorch', 'mediapipe', 'OpenCV', 'Transformer']}
+                description={rm.fsl_recognizer_description()}
+                githubUrl="https://github.com/EIP-TEK89/trio-signo-ai"
+                projectUrl="/"
+                tabindex={tabIndex}
+                collaborators={[JJA]}
             />
             <ProjectCard
-                title="Smart Healthcare Dashboard"
-                mainSkill="AI/ML"
-                skills={['Vue.js', 'Python', 'Scikit-learn']}
-                description="Modern workspace application with real-time editing, video conferencing, and AI-assisted content generation features."
-                githubUrl="https://github.com/yourusername/your-repo"
-                projectUrl="https://yourprojecturl.com"
+                title={rm.toobo_title()}
+                mainSkill="Frontend"
+                skills={['Vue.js', 'HTML5', 'TypeScript', 'Vite', 'Local Storage', 'CSS3']}
+                description={rm.toobo_description()}
+                githubUrl="https://github.com/lenny-vigeon-dev/Toobo"
+                projectUrl="/"
+                tabindex={tabIndex}
             />
             <ProjectCard
-                title="Automated Trading Bot"
-                mainSkill="AI/ML"
-                skills={['Python', 'TensorFlow', 'Redis']}
-                description="Game jam project made in 3 days"
+                title="OriginL"
+                mainSkill="Frontend"
+                skills={['Svelte 5', 'HTML5', 'TypeScript', 'Vite', 'Tailwind CSS']}
+                description={rm.originl_description()}
+                githubUrl="https://github.com/lenny-vigeon-dev/originL-website"
+                projectUrl="https://origin-l-website.vercel.app/"
+                tabindex={tabIndex}
+            />
+            <ProjectCard
+                title="WurioWire"
+                mainSkill="Video Game"
+                skills={['Python', 'Pygame', 'Class inheritance']}
+                description={rm.wuriowire_description()}
                 githubUrl="https://github.com/Linnchoeuh/JAM-Wurio-Wire"
+                collaborators={[JJA, ARO]}
+                tabindex={tabIndex}
             />
             <ProjectCard
-                title="Portfolio"
+                title={rm.portfolio_title()}
                 mainSkill="Frontend"
                 skills={['Svelte 5', 'Tailwind CSS', 'HTML5', 'TypeScript', 'Vite', 'pnpm', 'Github Actions']}
-                description="A personal portfolio showcasing my projects and skills. (The webpage you are currently viewing)"
+                description={rm.portfolio_description()}
                 githubUrl="https://github.com/lenny-vigeon-dev/portfolio"
-                projectUrl="/"
+                tabindex={tabIndex}
             />
 		</div>
-		<div class="mt-12 text-center inline-flex">
-			<Button text={"View more on Github"} href={githubUrl} target="_blank">
+        <div class={mt12 + " flex justify-center"}>
+            <Button text={rm.view_more_on_github()} href={githubUrl} target="_blank" tabindex={tabIndex}>
                 {#snippet main()}
                     <Github _class={svg_scale} />
                 {/snippet}
             </Button>
-		</div>
+        </div>
 	</div>
 </section>

@@ -3,7 +3,7 @@
 
     import { onMount } from "svelte";
 
-    import Button from "$components/Button.svelte";
+    import Button from "$components/interact/Button.svelte";
 
     import { rm } from '$utils/reactiveMessages.svelte'; // rm = reactive messages
     import { detectPreferredTheme, setTheme, toggleTheme } from '$utils/themeManager';
@@ -52,6 +52,11 @@
 		return () => window.removeEventListener('resize', resizeButton);
     });
 
+    interface ThemeButtonProps {
+        tabindex?: number;
+    }
+    let { tabindex = 0 }: ThemeButtonProps = $props();
+
 </script>
 
-<Button text={$darkMode ? darkThemeText : lightThemeText} onclick={handleThemeToggle} />
+<Button text={$darkMode ? darkThemeText : lightThemeText} onclick={handleThemeToggle} tabindex={tabindex} />

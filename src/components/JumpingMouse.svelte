@@ -2,10 +2,12 @@
   import "$/app.css";
   import { primary_gradient,
     svg_scale,
-    mb20
+    s
     } from '$utils/styles';
 
     import type { DefaultProps } from "$utils/interfaces";
+
+    const mb20: string = s("mb", 20);
 
   let { _class = "", _style = "" }: DefaultProps = $props();
 </script>

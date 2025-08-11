@@ -198,8 +198,12 @@
 
     function resizeCanvas() {
         if (!canvas) return;
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        // Use document.documentElement for more reliable viewport size
+        const width = Math.min(window.innerWidth, document.documentElement.clientWidth);
+        const height = Math.min(window.innerHeight, document.documentElement.clientHeight);
+
+        canvas.width = width;
+        canvas.height = height;
         horizontal_ratio = canvas.height ? canvas.width / canvas.height : 1;
         vertical_ratio = canvas.width ? canvas.height / canvas.width : 1;
         maxDistance = canvas.height / 9;
@@ -256,12 +260,13 @@
 
 <canvas
     bind:this={canvas}
-    class="fixed inset-0 w-full h-full pointer-events-none z-0"
-    style="background: transparent;"
+    class="fixed inset-0 w-full h-full pointer-events-none z-0 max-w-full"
+    style="background: transparent; max-width: 100vw; max-height: 100vh;"
 ></canvas>
 
 <style>
     canvas {
         will-change: transform;
+        overflow: hidden;
     }
 </style>
