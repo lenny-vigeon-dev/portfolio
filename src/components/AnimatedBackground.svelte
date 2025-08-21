@@ -30,7 +30,7 @@
     let lastTime: number = 0;
 
     // FPS counter variables
-    const FPS: number = 120;
+    const FPS: number = 30;
     const frameTime: number = 1000 / FPS; // Time per frame in milliseconds
     let horizontal_ratio: number = 1;
     let vertical_ratio: number = 1;
@@ -84,7 +84,7 @@
     function drawParticles() {
         const clusterSize = maxDistance;
 
-        if (lastTime + frameTime < performance.now()) {
+        if (FPS === 0 || lastTime + frameTime < performance.now()) {
             lastTime = performance.now();
         } else {
             return; // Skip frame if too soon

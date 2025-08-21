@@ -5,14 +5,15 @@
         primary_gradient,
         rounded_md,
         text_sm,
-        svg_scale
+        svg_scale,
+        gradient_div_parent,
+        s
     } from "$utils/styles";
-	import { text } from "@sveltejs/kit";
 
     interface SelectProps {
         value?: any;
         onchange?: (event: Event) => void;
-        main: any;
+        main: Snippet<[]>;
         tabindex?: number;
     }
     let { value = $bindable(), onchange, main, tabindex = 0 }: SelectProps = $props();
@@ -39,29 +40,31 @@
         isMouseInteraction = false;
     }
 
+    const pl2: string = s("pl", 3);
+    const pr5: string = s("pr", 6);
+    const py2: string = s("py", 2);
+    const right: string = s("right", 1.5);
+    const w4: string = s("w", 4);
+    const h4: string = s("h", 4);
+
 </script>
 
-<div class={"flex relative group" + rounded_md + primary_gradient}>
+<div class={"flex relative" + gradient_div_parent + rounded_md}>
     <select bind:value={value} onchange={handleChange} onmousedown={handleMouseDown} onkeydown={handleKeyDown}
     class={"appearance-none \
     m-0.25 2kp:m-0.5 2uhd:m-0.75 \
-    pl-2 sm:pl-6 uhdp:pl-11 4kp:pl-16 2uhd:pl-20 \
-    pr-5 sm:pr-10 uhdp:pr-18 4kp:pr-26 2uhd:pr-35 \
-    py-2 uhdp:py-5 4kp:py-7 2uhd:py-9 \
     text-lcol2 dark:text-dcol3 \
     bg-lbg2 dark:bg-dbg2" +
-    rounded_md + text_sm}
+    rounded_md + text_sm + pl2 + pr5 + py2}
     tabindex={tabindex}>
         {@render main?.() }
     </select>
 
     <div class={"absolute pointer-events-none \
-    right-1 sm:right-4 uhdp:right-7 4kp:right-11 2uhd:right-15 \
     top-1/2 transform -translate-y-1/2  \
     transition-transform duration-300 \
-    group-hover:rotate-180 group-focus-within:rotate-180" +
-    svg_scale}>
-        <svg class="w-4 h-4 text-lcol2 dark:text-dcol3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    group-hover:rotate-180 group-focus-within:rotate-180" + right}>
+        <svg class={"text-lcol2 dark:text-dcol3" + w4 + h4} fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
         </svg>
     </div>

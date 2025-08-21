@@ -69,9 +69,11 @@ body {
     --color-lcol1: #E7000B;
     --color-lcol2: #F54900;
     --color-lcol3: #FF6900;
+    --color-lcol4: #FF8A00;
     --color-dcol1: #175DFC;
     --color-dcol2: #9610F7;
     --color-dcol3: #AD46FF;
+    --color-dcol4: #4070FC;
 
     --color-dbg: #1a1a30;
     --color-dbg2: #101030;

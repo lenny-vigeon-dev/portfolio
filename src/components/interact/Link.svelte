@@ -3,11 +3,14 @@
 
     import {
         s,
-        svg_scale
+        ws
     } from "$utils/styles";
 
-    import Url from "../logos/Url.svelte";
+    import { onMount } from "svelte";
 
+    import Url from "../icons/Url.svelte";
+
+    let iconSize: number = $state(16);
     const gap2: string = s("gap", 2);
 
     interface LinkProps {
@@ -26,6 +29,20 @@
         _class = ""
     }: LinkProps = $props();
 
+    function resizeDependentFunctions() {
+        // Update icon size on resize
+        // console.log(window.innerWidth)
+        iconSize = ws(16);
+    }
+
+	onMount(() => {
+        resizeDependentFunctions();
+		window.addEventListener('resize', resizeDependentFunctions);
+		return () => {
+            window.removeEventListener('resize', resizeDependentFunctions);
+        };
+	});
+
 </script>
 
 <a href={url} target={target} tabindex={tabindex}
@@ -33,5 +50,5 @@ class={"flex flex-row items-center inline-center \
 text-lt3 dark:text-dt3 hover:underline" +
 gap2 + _class}>
     <p>{title}</p>
-    <Url size={16} _class={svg_scale} />
+    <Url size={iconSize} />
 </a>

@@ -7,6 +7,9 @@
     "section_about": "About",
     "section_skills": "Skills",
     "section_projects": "Projects",
+    "section_pricing": "Pricing",
+    "section_collaborators": "Collaborators",
+    "section_contact": "Contact",
 
     "me_name": "Lenny Vigeon",
     "me_title": "AI Machine Learning + Fullstack Developer",
@@ -51,5 +54,22 @@
     "portfolio_title": "Portfolio",
     "portfolio_description": "My personal portfolio showcasing my projects and skills. (The webpage you are currently consulting)",
 
-    "view_more_on_github": "View more on GitHub"
+    "view_more_on_github": "View more on GitHub",
+
+    "contact_title": "Let's Work Together",
+    "contact_content": "Ready to bring your ideas to life? I'm always excited to work on innovative projects that push the boundaries of web development and AI.",
+    "send_me_a_msg": "Send me a message",
+    "name": "Name",
+    "name_placeholder": "Your name",
+    "email": "Email",
+    "email_placeholder": "Your email",
+    "subject": "Subject",
+    "subject_placeholder": "Project inquiry",
+    "message": "Message",
+    "message_placeholder": "Tell me about your project...",
+    "send_msg": "Send Message",
+
+    "phone": "Phone",
+    "location": "Location"
+
 }

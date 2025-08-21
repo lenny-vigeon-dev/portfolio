@@ -13,7 +13,8 @@
 		p_font_sizes_m,
 		p_width,
         svg_scale,
-        s
+        s,
+        ws
 	} from '$utils/styles';
 	import JumpingMouse from '$components/JumpingMouse.svelte';
 	import Button from '$components/interact/Button.svelte';
@@ -25,12 +26,19 @@
     import SkillCard from '$components/SkillCard.svelte';
     import ProjectCard from '$components/ProjectCard.svelte';
     import SectionTitle from '$components/SectionTitle.svelte';
+    import InfoBlock from '$components/InfoBlock.svelte';
+    import Input from '$components/interact/Input.svelte';
+    import TextArea from '$components/interact/TextArea.svelte';
+    import BlurryDiv from '$components/BlurryDiv.svelte';
 
 
-	import Email from '$components/logos/Email.svelte';
-	import Linkedin from '$components/logos/Linkedin.svelte';
-	import Github from '$components/logos/Github.svelte';
-	import Download from '$components/logos/Download.svelte';
+	import Email from '$components/icons/Email.svelte';
+	import Linkedin from '$components/icons/Linkedin.svelte';
+	import Github from '$components/icons/Github.svelte';
+	import Download from '$components/icons/Download.svelte';
+    import Phone from '$components/icons/Phone.svelte';
+    import Location from '$components/icons/Location.svelte';
+    import Send from '$components/icons/Send.svelte';
 
 	import { rm } from '$utils/reactiveMessages.svelte'; // rm = reactive messages
 	import { headerVisible, sections, headerTabIndex } from '$lib/stores/ui';
@@ -46,24 +54,35 @@
     const gap6: string = s("gap", 6);
     const gap10: string = s("gap", 10);
     const gap12: string = s("gap", 12);
+    const m5: string = s("m", 5);
     const mb1: string = s("mb", 1);
     const mb12: string = s("mb", 12);
     const mb10: string = s("mb", 10);
     const mb14: string = s("mb", 14);
+    const mb20: string = s("mb", 20);
     const mt12: string = s("mt", 12);
+    const p6: string = s("p", 6);
     const p8: string = s("p", 8);
     const px4: string = s("px", 4);
+    const space_y_1_5: string = s("space-y", 1.5);
+    const space_y6: string = s("space-y", 6);
 
 	// let darkMode = $state(true);
 	let header = $state(false); // Control header visibility
     let jumpingMouseOpacity = $state(1); // Initial opacity
 	let firstSection: HTMLElement; // Reference to first section
+    let icon_size16: number = $state(16)
+    let icon_size24: number = $state(24)
+    let icon_size32: number = $state(32)
+
     $effect(() => {
         // Update sections store with reactive messages
         sections.set([
             { id: 'about', name: rm.section_about() },
             { id: 'skills', name: rm.section_skills() },
-            { id: 'projects', name: rm.section_projects() }
+            { id: 'projects', name: rm.section_projects() },
+            { id: 'collaborators', name: rm.section_collaborators() },
+            { id: 'contact', name: rm.section_contact() },
         ]);
     });
 
@@ -97,56 +116,67 @@
         displayHeader();
     }
 
+    function resizeDependentFunctions() {
+        // Update icon size on resize
+        // console.log(window.innerWidth)
+        icon_size16 = ws(16);
+        icon_size24 = ws(24);
+        icon_size32 = ws(32, 0.75);
+    }
+
 	onMount(() => {
         scrollDependentFunctions();
+        resizeDependentFunctions();
 		window.addEventListener('scroll', scrollDependentFunctions);
-		return () => window.removeEventListener('scroll', scrollDependentFunctions);
+        window.addEventListener('resize', resizeDependentFunctions);
+		return () => {
+            window.removeEventListener('scroll', scrollDependentFunctions);
+            window.removeEventListener('resize', resizeDependentFunctions);
+        };
 	});
 </script>
 
 
-<section bind:this={firstSection} class={'relative flex min-h-screen flex-col justify-between overflow-x-hidden '}>
+<section bind:this={firstSection} class={'relative flex min-h-screen flex-col justify-between'}>
     <AnimatedBackground />
-    <div class={"relative flex justify-end p-[0.75%]" + gap2}>
+    <div class={"relative flex justify-end" + gap2 + m5}>
         <ThemeButton tabindex={beforeTabIndex} />
         <SelectLanguage tabindex={beforeTabIndex} />
     </div>
-    <div class="relative container mx-auto flex flex-col items-center px-4 text-center">
+    <div class={"relative flex flex-col items-center text-center" + px4}>
         <h2 class={h2_sizes + mb1}>{rm.me_name()}</h2>
         <h1 class={colored_title + h1_sizes + mb1}>{rm.me_title()}</h1>
-        <div class="flex max-w-[60%] flex-col items-center justify-center">
+        <div class="flex w-full max-w-[90%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[60%] flex-col items-center justify-center">
             <p class={p_font_sizes_l + p_width + mb10}>{rm.me_mission()}</p>
-            <div class={"animate-in slide-in-from-bottom-4 \
-            flex flex-wrap justify-center " +
+            <div class={"flex flex-wrap justify-center w-full " +
             gap4 + mb12}>
-                <Button text={rm.me_contact()} tabindex={beforeTabIndex}>
+                <Button text={rm.me_contact()} tabindex={beforeTabIndex} href="#contact">
                     {#snippet main()}
-                        <Email _class={svg_scale} />
+                        <Email size={icon_size16} />
                     {/snippet}
                 </Button>
                 <Button text={rm.me_resume()} href="/{rm.cv_pdf()}" target="_blank" tabindex={beforeTabIndex}>
                     {#snippet main()}
-                        <Download _class={svg_scale} />
+                        <Download size={icon_size16} />
                     {/snippet}
                 </Button>
             </div>
-            <div class={"animate-in slide-in-from-bottom-4 \
-            flex justify-center" +
-            gap10}>
+            <div class={"relative flex justify-center w-full" + gap10}>
                 <ZoomButton href={githubUrl} target="_blank" tabindex={beforeTabIndex}>
                     {#snippet main()}
-                        <Github size={32} _class="text-lt3 dark:text-dt3" />
+                        <Github size={icon_size32} _class="text-lt3 dark:text-dt3" />
                     {/snippet}
                 </ZoomButton>
                 <ZoomButton href="https://www.linkedin.com/in/lenny-vigeon/" target="_blank" tabindex={beforeTabIndex}>
                     {#snippet main()}
-                        <Linkedin size={32} _class="text-lt3 dark:text-dt3" />
+                        <Linkedin size={icon_size32} _class="text-lt3 dark:text-dt3" />
                     {/snippet}
                 </ZoomButton>
             </div>
         </div>
     </div>
-    <JumpingMouse _class="" _style="opacity: {jumpingMouseOpacity}; transition: opacity 0.3s ease-out;" />
+    <JumpingMouse _class={mb20} _style="opacity: {jumpingMouseOpacity}; transition: opacity 0.3s ease-out;" />
+
 </section>
 
 <section id="about" class="py-[6%] \
@@ -251,9 +281,82 @@ transition-all duration-300 overflow-x-hidden">
         <div class={mt12 + " flex justify-center"}>
             <Button text={rm.view_more_on_github()} href={githubUrl} target="_blank" tabindex={tabIndex}>
                 {#snippet main()}
-                    <Github _class={svg_scale} />
+                    <Github size={icon_size16} />
                 {/snippet}
             </Button>
+        </div>
+	</div>
+</section>
+
+<section id="contact" class="py-[5%] \
+relative flex flex-col \
+transition-all duration-300 overflow-x-hidden">
+	<div class="container mx-auto max-w-[90%] md:max-w-[80%]">
+        <SectionTitle title={rm.contact_title()} subtitle={rm.contact_content()} />
+        <div class={"grid grid-cols-1 lg:grid-cols-2 w-full" + gap12}>
+            <BlurryDiv animate={false}>
+                {#snippet main()}
+                    <div class={"flex flex-col" + p6 + space_y_1_5}>
+			    		<h3 class={"text-foreground font-semibold tracking-tight" + h3_sizes}>{rm.send_me_a_msg()}</h3>
+			    	</div>
+			    	<div class={"pt-0" + space_y6 + p6}>
+			    		<div class={"grid grid-cols-1 md:grid-cols-2" + gap4}>
+                            <Input
+                                title={rm.name()}
+                                placeHolder={rm.name_placeholder()}
+                                id="name"
+                                tabindex={tabIndex}
+                            />
+                            <Input
+                                title={rm.email()}
+                                placeHolder={rm.email_placeholder()}
+                                id="email"
+                                tabindex={tabIndex}
+                            />
+			    		</div>
+                        <Input
+                            title={rm.subject()}
+                            placeHolder={rm.subject_placeholder()}
+                            id="subject"
+                            tabindex={tabIndex}
+                        />
+			    		<TextArea
+			    			title={rm.message()}
+			    			placeHolder={rm.message_placeholder()}
+			    			id="message"
+                            tabindex={tabIndex}
+			    		/>
+                        <Button text={rm.send_msg()} tabindex={tabIndex}>
+                            {#snippet main()}
+                                <Send size={icon_size16} />
+                            {/snippet}
+                        </Button>
+			    	</div>
+                {/snippet}
+            </BlurryDiv>
+			<div class={space_y6}>
+                <InfoBlock
+                    title={rm.email()}
+                    content="lenny.vigeon@gmail.com">
+                    {#snippet svg()}
+                        <Email size={icon_size32} />
+                    {/snippet}
+                </InfoBlock>
+                <InfoBlock
+                    title={rm.phone()}
+                    content="+33 7 82 00 81 52">
+                    {#snippet svg()}
+                        <Phone size={icon_size32} />
+                    {/snippet}
+                </InfoBlock>
+                <InfoBlock
+                    title={rm.location()}
+                    content="Paris, Île-de-France">
+                    {#snippet svg()}
+                        <Location size={icon_size32} />
+                    {/snippet}
+                </InfoBlock>
+            </div>
         </div>
 	</div>
 </section>

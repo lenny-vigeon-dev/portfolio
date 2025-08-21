@@ -5,7 +5,7 @@
 </script>
 
 <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-class={"lucide lucide-mail " + _class} style={_style}>
-    <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+class={_class} style={_style}>
+    <path d="M15 3h6v6"></path><path d="M10 14 21 3"></path>
+    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
 </svg>

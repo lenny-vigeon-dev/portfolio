@@ -8,13 +8,14 @@
         gradient_div_child,
         s
     } from "$utils/styles";
+    import type { Snippet } from "svelte";
 
     interface ButtonProps {
         text: string;
         onclick?: () => void;
         href?: string;
         target?: string;
-        main?: any;
+        main?: Snippet<[]>;
         tabindex?: number;
     }
 
@@ -32,9 +33,8 @@
     }
 
     const parentStyle: string = gradient_div_parent + rounded_md;
-    const divStyle: string = "px-2 sm:px-5 uhdp:px-8 4kp:px-12 2uhd:px-15 \
-        py-2 uhdp:py-5 4kp:py-7 2uhd:py-9" +
-        gradient_div_child + rounded_md + text_sm + s("gap", 4);
+    const divStyle: string = gradient_div_child + rounded_md + text_sm +
+        s("gap", 4) + s("px", 2) + s("py", 2);
 </script>
 
 {#if href}
@@ -44,7 +44,7 @@
             {text}
         </div>
     </a>
-{:else}
+    {:else}
     <button class={parentStyle} onclick={handleClick} tabindex={tabindex}>
         <div class={divStyle}>
             {@render main?.()}

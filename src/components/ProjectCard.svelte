@@ -7,14 +7,16 @@
         h3_sizes,
         text_xs,
         text_sm,
-        s
+        s,
+        ws
     } from "$utils/styles";
+    import { onMount } from "svelte";
     import type { Collaborator } from "$utils/interfaces";
 
     import BlurryDiv from "./BlurryDiv.svelte";
     import ZoomButton from "./interact/ZoomButton.svelte";
-    import Github from "./logos/Github.svelte";
-    import Url from "./logos/Url.svelte";
+    import Github from "./icons/Github.svelte";
+    import Url from "./icons/Url.svelte";
     import SkillTagsContainer from "./SkillTagsContainer.svelte";
     import H3Title from "./H3Title.svelte";
     import Link from "./interact/Link.svelte";
@@ -46,7 +48,8 @@
     }: BigProjectCardProps = $props();
 
     const h3Size: string = bigSize ? h3_sizes : h3_sizes_lg;
-    const iconSize: number = bigSize ? 20 : 16;
+    let iconSize: number = $state(16)
+
 
     const p6: string = s("p", 6);
     const space_y_3: string = s("space-y", 3);
@@ -63,6 +66,19 @@
     const bigSizeGap: string = bigSize ? gap6 : gap3;
     const bigSizeMb: string = bigSize ? mb4 : mb3;
 
+    function resizeDependentFunctions() {
+        // Update icon size on resize
+        // console.log(window.innerWidth)
+        iconSize = bigSize ? ws(20) : ws(16);
+    }
+
+	onMount(() => {
+        resizeDependentFunctions();
+		window.addEventListener('resize', resizeDependentFunctions);
+		return () => {
+            window.removeEventListener('resize', resizeDependentFunctions);
+        };
+	});
 </script>
 
 <BlurryDiv>

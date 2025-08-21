@@ -7,6 +7,9 @@
     "section_about": "À propos",
     "section_skills": "Compétences",
     "section_projects": "Projets",
+    "section_pricing": "Tarification",
+    "section_collaborators": "Collaborateurs",
+    "section_contact": "Contact",
 
     "me_name": "Lenny Vigeon",
     "me_title": "Développeur IA Machine Learning + Fullstack",
@@ -51,5 +54,22 @@
     "portfolio_title": "Portfolio",
     "portfolio_description": "Mon portfolio personnel présentant mes projets et mes compétences. (La page web que vous consultez actuellement)",
 
-    "view_more_on_github": "Voir plus sur GitHub"
+    "view_more_on_github": "Voir plus sur GitHub",
+
+    "contact_title": "Travaillons ensemble",
+    "contact_content": "Prêt à donner vie à vos idées ? Je suis toujours enthousiaste à l'idée de travailler sur des projets innovants qui repoussent les limites du développement web et de l'IA.",
+    "name": "Nom",
+    "name_placeholder": "Votre nom",
+    "email": "Email",
+    "email_placeholder": "Votre email",
+    "subject": "Sujet",
+    "subject_placeholder": "Demande de projet",
+    "message": "Message",
+    "message_placeholder": "Parlez-moi de votre projet...",
+    "send_msg": "Envoyer le message",
+
+    "phone": "Téléphone",
+    "location": "Emplacement"
+
+
 }

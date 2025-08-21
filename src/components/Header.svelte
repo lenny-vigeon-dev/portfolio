@@ -3,6 +3,8 @@
     import '$/app.css';
 
     import {
+        text_xl,
+        text_md,
         s
     } from '$utils/styles';
     import type { SectionData } from '$utils/interfaces';
@@ -30,6 +32,10 @@
     let headerElement: HTMLElement = $state()!;
 
     const gap2: string = s("gap", 2);
+    const py2: string = s("py", 2);
+    const px4: string = s("px", 5);
+    const space_x6: string = s("space-x", 6);
+    const h15: string = s("h", 15);
 
     function navElemVisibility() {
         if (!window) return;
@@ -117,12 +123,13 @@
 </script>
 
 <header bind:this={headerElement}
-       class="fixed top-0 left-0 right-0 z-50 p-2 \
+       class={"fixed top-0 left-0 right-0 z-50 \
        backdrop-blur bg-lbg6/50 dark:bg-dbg6/50 \
-       flex items-center justify-between w-full transition-all duration-150 origin-top
-       {show ? 'scale-100 opacity-100' : 'scale-95 opacity-0 pointer-events-none'}">
+       flex items-center justify-between w-full transition-all duration-150 origin-top" +
+       (show ? 'scale-100 opacity-100' : 'scale-95 opacity-0 pointer-events-none') +
+       py2 + px4}>
     {#if titleVisibility}
-        <h1 class="pl-5 text-xl font-bold text-lt1 dark:text-dt1">
+        <h1 class={"font-bold text-lt1 dark:text-dt1" + text_xl}>
             {title}
         </h1>
     {:else}
@@ -130,7 +137,7 @@
     {/if}
     {#if navVisibility}
         <nav bind:this={navElement} class="px-5">
-            <ul class="flex space-x-6">
+            <ul class={"flex" + space_x6}>
                 {#each sections as section}
                     <li>
                         <a href="#{section.id}" tabindex={show ? tabindex : -1}
@@ -138,11 +145,10 @@
                                e.preventDefault();
                                scrollToSection(section.id);
                            }}
-                           class="transition-colors duration-200 \
-                           text-lt1 dark:text-dt1 hover:text-lt3 dark:hover:text-dt3 \
-                           {$activeSection === section.id
-                               ? ' font-semibold'
-                               : ''}">
+                           class={"transition-colors duration-200 \
+                           text-lt1 dark:text-dt1 hover:text-lt3 dark:hover:text-dt3 " +
+                           ($activeSection === section.id ? 'font-semibold' : '') +
+                           text_md}>
                             {section.name}
                         </a>
                     </li>

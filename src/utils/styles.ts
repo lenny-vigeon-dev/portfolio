@@ -1,5 +1,12 @@
 import "$/app.css";
 
+export function ws(val: number, scale: number = 1): number {
+    const width: number = 2160;
+    if (!window || window.innerWidth <= width)
+        return val;
+    return window.innerWidth / width * val * scale;
+}
+
 export function s(_class: string, base_size: number, step: number = 0.125): string {
     function format(num: number) {
         return Number.isInteger(num) ? num : num.toFixed(1);
@@ -57,6 +64,10 @@ export const h3_sizes_lg = " text-lg md:text-lg fhdp:text-2xl 2kp:text-3xl uhdp:
 export const h4_sizes = " text-xl md:text-2xl fhdp:text-3xl 2kp:text-4xl uhdp:text-5xl 4kp:text-6xl 2uhd:text-8xl font-bold leading-snug " + animated;
 export const text_xs = " text-xs 2kp:text-lg uhdp:text-2xl 4kp:text-3xl 2uhd:text-4xl " + animated;
 export const text_sm = " text-sm 2kp:text-xl uhdp:text-3xl 4kp:text-4xl 2uhd:text-5xl " + animated;
+export const text_base = " text-base 2kp:text-xl uhdp:text-3xl 4kp:text-4xl 2uhd:text-5xl " + animated;
+export const text_md = " text-md 2kp:text-2xl uhdp:text-4xl 4kp:text-5xl 2uhd:text-6xl " + animated;
+export const text_lg = " text-lg 2kp:text-3xl uhdp:text-5xl 4kp:text-6xl 2uhd:text-7xl " + animated;
+export const text_xl = " text-xl 2kp:text-3xl uhdp:text-5xl 4kp:text-6xl 2uhd:text-7xl " + animated;
 export const p_font_sizes_l = " text-lg md:text-2xl fhdp:text-3xl 2kp:text-4xl uhdp:text-6xl 4kp:text-7xl 2uhd:text-8xl uhdp:leading-snug " + animated;
 export const p_font_sizes_m = " text-lg md:text-xl fhdp:text-2xl 2kp:text-3xl uhdp:text-5xl 4kp:text-6xl 2uhd:text-8xl uhdp:leading-snug " + animated;
 export const p_font_sizes_s = " text-xs 2kp:text-2xl uhdp:text-3xl 4kp:text-4xl 2uhd:text-6xl " + animated;

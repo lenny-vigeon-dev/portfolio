@@ -1,20 +1,27 @@
 <script lang="ts">
-  import "$/app.css";
-  import { primary_gradient,
-    svg_scale,
-    s
+    import "$/app.css";
+    import { onMount } from 'svelte';
+    import { primary_gradient,
+        svg_scale,
+        ws,
+        s
     } from '$utils/styles';
 
     import type { DefaultProps } from "$utils/interfaces";
 
-    const mb20: string = s("mb", 20);
+    let { _class = "", _style = "" }: DefaultProps = $props();
 
-  let { _class = "", _style = "" }: DefaultProps = $props();
+    const w1: string = s("w", 1);
+    const w6: string = s("w", 6);
+    const h3: string = s("h", 3);
+    const h10: string = s("h", 10);
+    const mt2: string = s("mt", 2);
+    const border2: string = s("border", 2);
 </script>
 
-<div class={"animate-bounce flex items-center justify-center " + mb20 + svg_scale + _class} style={_style}>
-    <div class={"w-6 h-10 border-2 \
-    rounded-full flex justify-center border-lcol1 dark:border-dcol1"}>
-        <div class={primary_gradient + "w-1 h-3 rounded-full mt-2 animate-pulse"}></div>
+<div class={"animate-bounce flex items-center justify-center " + _class} style={_style}>
+    <div class={"rounded-full flex justify-center border-lcol1 dark:border-dcol1" +
+    w6 + h10 + border2}>
+        <div class={"rounded-full animate-pulse" + primary_gradient + w1 + h3 + mt2}></div>
     </div>
 </div>
