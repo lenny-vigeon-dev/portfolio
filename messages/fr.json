@@ -69,7 +69,11 @@
     "send_msg": "Envoyer le message",
 
     "phone": "Téléphone",
-    "location": "Emplacement"
+    "location": "Emplacement",
 
+    "antoine_rospars_title": "Développeur Fullstack",
+    "antoine_rospars_description": "Développeur fullstack expérimenté, passionné par la création d'applications web.",
 
+    "jean_pierre_janopoulos_title": "Développeur Python",
+    "jean_pierre_janopoulos_description": "Développeur Python qualifié."
 }

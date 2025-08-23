@@ -13,13 +13,13 @@
     import { onMount } from "svelte";
     import type { Collaborator } from "$utils/interfaces";
 
-    import BlurryDiv from "./BlurryDiv.svelte";
-    import ZoomButton from "./interact/ZoomButton.svelte";
-    import Github from "./icons/Github.svelte";
-    import Url from "./icons/Url.svelte";
-    import SkillTagsContainer from "./SkillTagsContainer.svelte";
-    import H3Title from "./H3Title.svelte";
-    import Link from "./interact/Link.svelte";
+    import BlurryDiv from "$components/containers/BlurryDiv.svelte";
+    import ZoomButton from "$components/interact/ZoomButton.svelte";
+    import Github from "$components/icons/Github.svelte";
+    import Url from "$components/icons/Url.svelte";
+    import SkillTagsContainer from "$components/SkillTagsContainer.svelte";
+    import H3Title from "$components/H3Title.svelte";
+    import Link from "$components/interact/Link.svelte";
 
 	import { rm } from '$utils/reactiveMessages.svelte'; // rm = reactive messages
 

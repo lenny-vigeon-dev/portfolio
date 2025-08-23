@@ -12,4 +12,11 @@ export interface SectionData {
 export interface Collaborator {
     name: string;
     url: string;
+    title?: () => string;
+    description?: () => string;
+    skills?: string[];
+    img?: string;
+    linkedin?: string;
+    github?: string;
+    website?: string;
 }

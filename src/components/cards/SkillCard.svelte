@@ -5,9 +5,9 @@
         h3_sizes,
     } from "$utils/styles";
 
-    import BlurryDiv from "./BlurryDiv.svelte";
-    import H3Title from "./H3Title.svelte";
-    import SkillTagsContainer from "./SkillTagsContainer.svelte";
+    import BlurryDiv from "$components/containers/BlurryDiv.svelte";
+    import H3Title from "$components/H3Title.svelte";
+    import SkillTagsContainer from "$components/SkillTagsContainer.svelte";
 
     interface SkillCardProps {
         title: string;

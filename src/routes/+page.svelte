@@ -22,14 +22,16 @@
 	import ThemeButton from '$components/interact/ThemeButton.svelte';
 	import SelectLanguage from '$components/interact/SelectLanguage.svelte';
 	import AnimatedBackground from '$components/AnimatedBackground.svelte';
-	import TextCard from '$components/TextCard.svelte';
-    import SkillCard from '$components/SkillCard.svelte';
-    import ProjectCard from '$components/ProjectCard.svelte';
+	import TextCard from '$components/cards/TextCard.svelte';
+    import SkillCard from '$components/cards/SkillCard.svelte';
+    import ProjectCard from '$components/cards/ProjectCard.svelte';
     import SectionTitle from '$components/SectionTitle.svelte';
     import InfoBlock from '$components/InfoBlock.svelte';
     import Input from '$components/interact/Input.svelte';
     import TextArea from '$components/interact/TextArea.svelte';
-    import BlurryDiv from '$components/BlurryDiv.svelte';
+    import BlurryDiv from '$components/containers/BlurryDiv.svelte';
+    import Grid from '$components/containers/Grid.svelte';
+    import CollaboratorCard from '$components/cards/CollaboratorCard.svelte';
 
 
 	import Email from '$components/icons/Email.svelte';
@@ -56,6 +58,7 @@
     const gap12: string = s("gap", 12);
     const m5: string = s("m", 5);
     const mb1: string = s("mb", 1);
+    const mb5: string = s("mb", 5);
     const mb12: string = s("mb", 12);
     const mb10: string = s("mb", 10);
     const mb14: string = s("mb", 14);
@@ -211,14 +214,16 @@ transition-all duration-300 overflow-x-hidden">
 <section id="skills" class={"py-[5%] min-h-screen overflow-x-hidden" + px4}>
     <div class="relative container mx-auto max-w-[90%] md:max-w-[80%]">
         <SectionTitle title={rm.technical_skills()} subtitle={rm.technical_skills_content()} />
-        <div class={"grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3" + gap6}>
-            <SkillCard title={rm.frontend_dev()} skills={['Svelte', 'Vue.js', 'React', 'TypeScript', 'Tailwind CSS', 'JavaScript', 'HTML5', 'CSS3', 'React Native']} />
-            <SkillCard title={rm.backend_dev()} skills={['Node.js', 'SvelteKit', 'Python', 'Flask', 'Express', 'REST APIs', 'Microservices']} />
-            <SkillCard title={rm.devops_db_cloud()} skills={['PostgreSQL', 'MongoDB', 'MySQL', 'Docker', 'Github Actions', 'CI/CD', 'Vite']} />
-            <SkillCard title={rm.ai_ml()} skills={['TensorFlow', 'PyTorch', 'OpenAI API', 'Mistral API', 'ONNX', 'Mediapipe']} />
-            <SkillCard title={rm.tools_platforms()} skills={['Git', 'CI/CD', 'Windows 7/8/10/11', 'Linux (Arch/Ubuntu)', 'CMake', 'Makefile']} />
-            <SkillCard title={rm.miscellaneous()} skills={['C', 'C++', 'TrueNAS', 'systemd',  'VSCode', 'emacs', 'vim', 'nvim', 'Unit testing', 'Functional testing']} />
-        </div>
+        <Grid>
+            {#snippet main()}
+                <SkillCard title={rm.frontend_dev()} skills={['Svelte', 'Vue.js', 'React', 'TypeScript', 'Tailwind CSS', 'JavaScript', 'HTML5', 'CSS3', 'React Native']} />
+                <SkillCard title={rm.backend_dev()} skills={['Node.js', 'SvelteKit', 'Python', 'Flask', 'Express', 'REST APIs', 'Microservices']} />
+                <SkillCard title={rm.devops_db_cloud()} skills={['PostgreSQL', 'MongoDB', 'MySQL', 'Docker', 'Github Actions', 'CI/CD', 'Vite']} />
+                <SkillCard title={rm.ai_ml()} skills={['TensorFlow', 'PyTorch', 'OpenAI API', 'Mistral API', 'ONNX', 'Mediapipe']} />
+                <SkillCard title={rm.tools_platforms()} skills={['Git', 'CI/CD', 'Windows 7/8/10/11', 'Linux (Arch/Ubuntu)', 'CMake', 'Makefile']} />
+                <SkillCard title={rm.miscellaneous()} skills={['C', 'C++', 'TrueNAS', 'systemd',  'VSCode', 'emacs', 'vim', 'nvim', 'Unit testing', 'Functional testing']} />
+            {/snippet}
+        </Grid>
     </div>
 </section>
 
@@ -231,53 +236,55 @@ transition-all duration-300 overflow-x-hidden">
         <!-- Spotlight Projects -->
 		<!-- <div class="mb-16 grid grid-cols-1 gap-8 lg:grid-cols-2">
 		</div> -->
-		<div class={"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" + gap6}>
-            <ProjectCard
-                title={rm.fsl_recognizer_title()}
-                mainSkill="AI/ML/Frontend"
-                skills={['Svelte', 'Python', 'ONNX', 'Pytorch', 'mediapipe', 'OpenCV', 'Transformer']}
-                description={rm.fsl_recognizer_description()}
-                githubUrl="https://github.com/EIP-TEK89/trio-signo-ai"
-                projectUrl="/"
-                tabindex={tabIndex}
-                collaborators={[JJA]}
-            />
-            <ProjectCard
-                title={rm.toobo_title()}
-                mainSkill="Frontend"
-                skills={['Vue.js', 'HTML5', 'TypeScript', 'Vite', 'Local Storage', 'CSS3']}
-                description={rm.toobo_description()}
-                githubUrl="https://github.com/lenny-vigeon-dev/Toobo"
-                projectUrl="/"
-                tabindex={tabIndex}
-            />
-            <ProjectCard
-                title="OriginL"
-                mainSkill="Frontend"
-                skills={['Svelte 5', 'HTML5', 'TypeScript', 'Vite', 'Tailwind CSS']}
-                description={rm.originl_description()}
-                githubUrl="https://github.com/lenny-vigeon-dev/originL-website"
-                projectUrl="https://origin-l-website.vercel.app/"
-                tabindex={tabIndex}
-            />
-            <ProjectCard
-                title="WurioWire"
-                mainSkill="Video Game"
-                skills={['Python', 'Pygame', 'Class inheritance']}
-                description={rm.wuriowire_description()}
-                githubUrl="https://github.com/Linnchoeuh/JAM-Wurio-Wire"
-                collaborators={[JJA, ARO]}
-                tabindex={tabIndex}
-            />
-            <ProjectCard
-                title={rm.portfolio_title()}
-                mainSkill="Frontend"
-                skills={['Svelte 5', 'Tailwind CSS', 'HTML5', 'TypeScript', 'Vite', 'pnpm', 'Github Actions']}
-                description={rm.portfolio_description()}
-                githubUrl="https://github.com/lenny-vigeon-dev/portfolio"
-                tabindex={tabIndex}
-            />
-		</div>
+        <Grid>
+            {#snippet main()}
+                <ProjectCard
+                    title={rm.fsl_recognizer_title()}
+                    mainSkill="AI/ML/Frontend"
+                    skills={['Svelte', 'Python', 'ONNX', 'Pytorch', 'mediapipe', 'OpenCV', 'Transformer']}
+                    description={rm.fsl_recognizer_description()}
+                    githubUrl="https://github.com/EIP-TEK89/trio-signo-ai"
+                    projectUrl="/"
+                    tabindex={tabIndex}
+                    collaborators={[JJA]}
+                />
+                <ProjectCard
+                    title={rm.toobo_title()}
+                    mainSkill="Frontend"
+                    skills={['Vue.js', 'HTML5', 'TypeScript', 'Vite', 'Local Storage', 'CSS3']}
+                    description={rm.toobo_description()}
+                    githubUrl="https://github.com/lenny-vigeon-dev/Toobo"
+                    projectUrl="/"
+                    tabindex={tabIndex}
+                />
+                <ProjectCard
+                    title="OriginL"
+                    mainSkill="Frontend"
+                    skills={['Svelte 5', 'HTML5', 'TypeScript', 'Vite', 'Tailwind CSS']}
+                    description={rm.originl_description()}
+                    githubUrl="https://github.com/lenny-vigeon-dev/originL-website"
+                    projectUrl="https://origin-l-website.vercel.app/"
+                    tabindex={tabIndex}
+                />
+                <ProjectCard
+                    title="WurioWire"
+                    mainSkill="Video Game"
+                    skills={['Python', 'Pygame', 'Class inheritance']}
+                    description={rm.wuriowire_description()}
+                    githubUrl="https://github.com/Linnchoeuh/JAM-Wurio-Wire"
+                    collaborators={[JJA, ARO]}
+                    tabindex={tabIndex}
+                />
+                <ProjectCard
+                    title={rm.portfolio_title()}
+                    mainSkill="Frontend"
+                    skills={['Svelte 5', 'Tailwind CSS', 'HTML5', 'TypeScript', 'Vite', 'pnpm', 'Github Actions']}
+                    description={rm.portfolio_description()}
+                    githubUrl="https://github.com/lenny-vigeon-dev/portfolio"
+                    tabindex={tabIndex}
+                />
+            {/snippet}
+        </Grid>
         <div class={mt12 + " flex justify-center"}>
             <Button text={rm.view_more_on_github()} href={githubUrl} target="_blank" tabindex={tabIndex}>
                 {#snippet main()}
@@ -287,6 +294,40 @@ transition-all duration-300 overflow-x-hidden">
         </div>
 	</div>
 </section>
+
+<section id="collaborators" class="pb-[5%] \
+relative flex flex-col \
+bg-lbg3/80 dark:bg-dbg3/90 \
+transition-all duration-300 overflow-x-hidden">
+    <div class={"flex justify-center" + mb5}>
+        <div class="border-1 w-[10%] border-lt3 dark:border-dt3"></div>
+    </div>
+	<div class="container mx-auto max-w-[90%] md:max-w-[80%]">
+        <SectionTitle title={rm.collaborators()} />
+        <Grid>
+            {#snippet main()}
+                <CollaboratorCard
+                    name={ARO.name}
+                    title={ARO.title?.()}
+                    description={ARO.description?.()}
+                    skills={ARO.skills}
+                    linkedin={ARO.linkedin}
+                    github={ARO.github}
+                    website={ARO.website}
+                    tabindex={tabIndex}/>
+                <CollaboratorCard
+                    name={JJA.name}
+                    title={JJA.title?.()}
+                    description={JJA.description?.()}
+                    skills={JJA.skills}
+                    linkedin={JJA.linkedin}
+                    github={JJA.github}
+                    tabindex={tabIndex}/>
+            {/snippet}
+        </Grid>
+	</div>
+</section>
+
 
 <section id="contact" class="py-[5%] \
 relative flex flex-col \
@@ -337,14 +378,18 @@ transition-all duration-300 overflow-x-hidden">
 			<div class={space_y6}>
                 <InfoBlock
                     title={rm.email()}
-                    content="lenny.vigeon@gmail.com">
+                    content="lenny.vigeon@gmail.com"
+                    href="mailto:lenny.vigeon@gmail.com"
+                    tabindex={tabIndex}>
                     {#snippet svg()}
                         <Email size={icon_size32} />
                     {/snippet}
                 </InfoBlock>
                 <InfoBlock
                     title={rm.phone()}
-                    content="+33 7 82 00 81 52">
+                    content="+33 7 82 00 81 52"
+                    href="tel:+33 7 82 00 81 52"
+                    tabindex={tabIndex}>
                     {#snippet svg()}
                         <Phone size={icon_size32} />
                     {/snippet}

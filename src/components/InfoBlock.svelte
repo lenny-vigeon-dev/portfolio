@@ -12,17 +12,20 @@
     interface InfoBlockProps {
         title: string;
         content: string;
+        href?: string;
+        tabindex?: number;
         svg: Snippet<[]>;
     }
 
     let {
         title,
         content,
-        svg
+        href,
+        tabindex = 0,
+        svg,
     }: InfoBlockProps = $props();
 
-    import BlurryDiv from '$components/BlurryDiv.svelte';
-
+    import BlurryDiv from '$components/containers/BlurryDiv.svelte';
 
     const p6: string = s("p", 6);
     const h12: string = s("h", 12);
@@ -40,7 +43,13 @@
 			</div>
 			<div>
 				<h3 class={"font-semibold" + text_md + mb4}>{title}</h3>
-				<p class={text_sm}>{content}</p>
+                {#if href}
+                    <a href={href} class={"hover:underline"} tabindex={tabindex}>
+                        {content}
+                    </a>
+                {:else}
+                    <p class={text_sm}>{content}</p>
+                {/if}
 			</div>
 		</div>
 	</div>
