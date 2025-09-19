@@ -38,7 +38,8 @@
 	import Linkedin from '$components/icons/Linkedin.svelte';
 	import Github from '$components/icons/Github.svelte';
 	import Download from '$components/icons/Download.svelte';
-    import Phone from '$components/icons/Phone.svelte';
+    import Contract from '$components/icons/Contract.svelte';
+    import Laptop from '$components/icons/Laptop.svelte';
     import Location from '$components/icons/Location.svelte';
     import Send from '$components/icons/Send.svelte';
 
@@ -377,28 +378,24 @@ transition-all duration-300 overflow-x-hidden">
             </BlurryDiv>
 			<div class={space_y6}>
                 <InfoBlock
-                    title={rm.email()}
-                    content="lenny.vigeon@gmail.com"
-                    href="mailto:lenny.vigeon@gmail.com"
-                    tabindex={tabIndex}>
+                    title={rm.contract()}
+                    content={rm.contract_content()}>
                     {#snippet svg()}
-                        <Email size={icon_size32} />
+                        <Contract size={icon_size32} />
                     {/snippet}
                 </InfoBlock>
                 <InfoBlock
-                    title={rm.phone()}
-                    content="+33 7 82 00 81 52"
-                    href="tel:+33 7 82 00 81 52"
-                    tabindex={tabIndex}>
-                    {#snippet svg()}
-                        <Phone size={icon_size32} />
-                    {/snippet}
-                </InfoBlock>
-                <InfoBlock
-                    title={rm.location()}
-                    content="Paris, Île-de-France">
+                    title={rm.mobility() + " & " + rm.location()}
+                    content={rm.mobility_location_content()}>
                     {#snippet svg()}
                         <Location size={icon_size32} />
+                    {/snippet}
+                </InfoBlock>
+                <InfoBlock
+                    title={rm.work()}
+                    content={rm.work_content()}>
+                    {#snippet svg()}
+                        <Laptop size={icon_size32} />
                     {/snippet}
                 </InfoBlock>
             </div>

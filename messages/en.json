@@ -70,7 +70,13 @@
     "send_msg": "Send Message",
 
     "phone": "Phone",
+    "contract": "Contract",
+    "contract_content": "Permanent contract / Fixed-term contract / Freelance",
+    "mobility": "Mobility",
     "location": "Location",
+    "mobility_location_content": "Category B driving licence - Paris, Île-de-France",
+    "work": "Work",
+    "work_content": "remote / hybrid / on-site",
 
     "antoine_rospars_title": "Fullstack Developer",
     "antoine_rospars_description": "Experienced fullstack developer with a passion for building web applications.",

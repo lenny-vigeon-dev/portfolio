@@ -69,7 +69,13 @@
     "send_msg": "Envoyer le message",
 
     "phone": "Téléphone",
+    "contract": "Contrat",
+    "contract_content": "CDI / CDD / Freelance",
+    "mobility": "Mobilité",
     "location": "Emplacement",
+    "mobility_location_content": "Permis B - Paris, Île-de-France",
+    "work": "Travail",
+    "work_content": "remote / hybride / sur site",
 
     "antoine_rospars_title": "Développeur Fullstack",
     "antoine_rospars_description": "Développeur fullstack expérimenté, passionné par la création d'applications web.",
