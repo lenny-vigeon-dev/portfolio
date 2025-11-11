@@ -12,7 +12,7 @@
 <h3
 	class={_class +
 		' font-semibold ' +
-		'group-hover:text-lcol2 dark:group-hover:text-dcol1 ' +
+		// 'group-hover:text-lcol2 dark:group-hover:text-dcol1 ' +
 		'tracking-tight transition-colors duration-300'}
 >
 	{title}

@@ -13,13 +13,14 @@
 <div class="flex flex-wrap gap-2">
 	{#each skills as skill}
 		<div class={gradient_div_parent + 'rounded-full transition-all duration-300'}>
-			<div class={'rounded-full' + gradient_div_child}>
+			<div class={'m-0.25 rounded-full bg-lbg2 dark:bg-dbg2'}>
 				<div
 					class={text_sm +
 						'inline-flex cursor-default items-center ' +
 						'px-2.5 pt-0.5 pb-1 ' +
 						'4kp:px-8 4kp:pt-3 4kp:pb-5 ' +
-						'text-lt1 hover:text-lt2 dark:text-dt1 hover:dark:text-dt2 ' +
+						'text-lt1 dark:text-dt1 ' +
+						// "hover:text-lt2 hover:dark:text-dt2 " +
 						'transition-all duration-300'}
 				>
 					{skill}

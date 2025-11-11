@@ -25,13 +25,16 @@
 
 	function handleLinkClick(event: MouseEvent, sectionId: string) {
 		event.preventDefault();
+		event.stopPropagation(); // Prevent event from bubbling up
 		onNavigate(sectionId);
 		onToggle(); // Close menu after navigation
 	}
 
 	// Détection du clic à l'extérieur du menu
 	function handleClickOutside(event: Event) {
-		if (isOpen && menuElement && !menuElement.contains(event.target as Node)) {
+		if (!isOpen) return; // Don't process if menu is already closed
+
+		if (menuElement && !menuElement.contains(event.target as Node)) {
 			// Éviter de fermer si on clique sur le bouton hamburger
 			const target = event.target as HTMLElement;
 			if (!target.closest('[aria-expanded]')) {
@@ -49,6 +52,8 @@
 
 	// Détection de la perte de focus
 	function handleFocusOut(event: FocusEvent) {
+		if (!isOpen) return; // Don't process if menu is already closed
+
 		// Temporisation pour laisser le temps au nouvel élément de recevoir le focus
 		setTimeout(() => {
 			if (isOpen && menuElement && !menuElement.contains(document.activeElement)) {
