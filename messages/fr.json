@@ -58,7 +58,8 @@
 
 	"contact_title": "Travaillons ensemble",
 	"contact_content": "Prêt à donner vie à vos idées ? Je suis toujours enthousiaste à l'idée de travailler sur des projets innovants qui repoussent les limites du développement web et de l'IA.",
-	"name": "Nom",
+	"send_me_a_msg": "Envoyez-moi un message",
+    "name": "Nom",
 	"name_placeholder": "Votre nom",
 	"email": "Email",
 	"email_placeholder": "Votre email",
@@ -79,7 +80,7 @@
 	"location": "Emplacement",
 	"mobility_location_content": "Permis B - Paris, Île-de-France",
 	"work": "Travail",
-	"work_content": "remote / hybride / sur site",
+	"work_content": "distanciel / hybride / sur site",
 
 	"antoine_rospars_title": "Développeur Fullstack",
 	"antoine_rospars_description": "Développeur fullstack expérimenté, passionné par la création d'applications web.",
