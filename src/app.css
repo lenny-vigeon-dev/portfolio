@@ -4,95 +4,94 @@
 
 /* Smooth scroll behavior */
 html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 5rem; /* Offset pour le header fixe (80px) */
-    overflow-x: hidden; /* Prevent horizontal overflow */
+	scroll-behavior: smooth;
+	scroll-padding-top: 5rem; /* Offset pour le header fixe (80px) */
+	overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
 body {
-    overflow-x: hidden; /* Double security */
-    max-width: 100vw; /* Ensure body doesn't exceed viewport */
+	overflow-x: hidden; /* Double security */
+	max-width: 100vw; /* Ensure body doesn't exceed viewport */
 }
 
 /* Debug overflow elements */
 * {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 /* Configuration Tailwind v4 avec @theme */
 @theme {
-    --breakpoint-fhd: 120rem;
-    --breakpoint-fhdp: 120.01rem;
-    --breakpoint-fhd2: 140rem;
-    --breakpoint-fhd2p: 140.01rem;
+	--breakpoint-fhd: 120rem;
+	--breakpoint-fhdp: 120.01rem;
+	--breakpoint-fhd2: 140rem;
+	--breakpoint-fhd2p: 140.01rem;
 
-    --breakpoint-2k: 160rem;
-    --breakpoint-2kp: 160.01rem;
-    --breakpoint-2k2: 180rem;
-    --breakpoint-2k2p: 180.01rem;
-    --breakpoint-2k3: 200rem;
-    --breakpoint-2k3p: 200.01rem;
-    --breakpoint-2k4: 220rem;
-    --breakpoint-2k4p: 220.01rem;
+	--breakpoint-2k: 160rem;
+	--breakpoint-2kp: 160.01rem;
+	--breakpoint-2k2: 180rem;
+	--breakpoint-2k2p: 180.01rem;
+	--breakpoint-2k3: 200rem;
+	--breakpoint-2k3p: 200.01rem;
+	--breakpoint-2k4: 220rem;
+	--breakpoint-2k4p: 220.01rem;
 
-    --breakpoint-uhd: 240rem;
-    --breakpoint-uhdp: 240.01rem;
-    --breakpoint-uhd2: 260rem;
-    --breakpoint-uhd2p: 260.01rem;
-    --breakpoint-uhd3: 280rem;
-    --breakpoint-uhd3p: 280.01rem;
-    --breakpoint-uhd4: 300rem;
-    --breakpoint-uhd4p: 300.01rem;
+	--breakpoint-uhd: 240rem;
+	--breakpoint-uhdp: 240.01rem;
+	--breakpoint-uhd2: 260rem;
+	--breakpoint-uhd2p: 260.01rem;
+	--breakpoint-uhd3: 280rem;
+	--breakpoint-uhd3p: 280.01rem;
+	--breakpoint-uhd4: 300rem;
+	--breakpoint-uhd4p: 300.01rem;
 
-    --breakpoint-4k: 320rem;
-    --breakpoint-4kp: 320.01rem;
-    --breakpoint-4k2: 340rem;
-    --breakpoint-4k2p: 340.01rem;
-    --breakpoint-4k3: 360rem;
-    --breakpoint-4k3p: 360.01rem;
-    --breakpoint-4k4: 380rem;
-    --breakpoint-4k4p: 380.01rem;
-    --breakpoint-4k5: 400rem;
-    --breakpoint-4k5p: 400.01rem;
-    --breakpoint-4k6: 420rem;
-    --breakpoint-4k6p: 420.01rem;
-    --breakpoint-4k7: 440rem;
-    --breakpoint-4k7p: 440.01rem;
-    --breakpoint-4k8: 460rem;
-    --breakpoint-4k8p: 460.01rem;
+	--breakpoint-4k: 320rem;
+	--breakpoint-4kp: 320.01rem;
+	--breakpoint-4k2: 340rem;
+	--breakpoint-4k2p: 340.01rem;
+	--breakpoint-4k3: 360rem;
+	--breakpoint-4k3p: 360.01rem;
+	--breakpoint-4k4: 380rem;
+	--breakpoint-4k4p: 380.01rem;
+	--breakpoint-4k5: 400rem;
+	--breakpoint-4k5p: 400.01rem;
+	--breakpoint-4k6: 420rem;
+	--breakpoint-4k6p: 420.01rem;
+	--breakpoint-4k7: 440rem;
+	--breakpoint-4k7p: 440.01rem;
+	--breakpoint-4k8: 460rem;
+	--breakpoint-4k8p: 460.01rem;
 
-    --breakpoint-2uhd: 480rem;
-    --breakpoint-2uhdp: 480.01rem;
+	--breakpoint-2uhd: 480rem;
+	--breakpoint-2uhdp: 480.01rem;
 
-    --text-10xl: 12rem;
+	--text-10xl: 12rem;
 
-    --color-lcol1: #E7000B;
-    --color-lcol2: #F54900;
-    --color-lcol3: #FF6900;
-    --color-lcol4: #FF8A00;
-    --color-dcol1: #175DFC;
-    --color-dcol2: #9610F7;
-    --color-dcol3: #AD46FF;
-    --color-dcol4: #4070FC;
+	--color-lcol1: #e7000b;
+	--color-lcol2: #f54900;
+	--color-lcol3: #ff6900;
+	--color-lcol4: #ff8a00;
+	--color-dcol1: #175dfc;
+	--color-dcol2: #9610f7;
+	--color-dcol3: #ad46ff;
+	--color-dcol4: #4070fc;
 
-    --color-dbg: #1a1a30;
-    --color-dbg2: #101030;
-    --color-dbg3: #1a151c;
-    --color-dbg4: #22222a;
-    --color-dbg5: #1e1e25;
-    --color-dbg6: #22222f;
-    --color-dt1: white;
-    --color-dt2: black;
-    --color-dt3: #cccccc;
+	--color-dbg: #1a1a30;
+	--color-dbg2: #101030;
+	--color-dbg3: #1a151c;
+	--color-dbg4: #22222a;
+	--color-dbg5: #1e1e25;
+	--color-dbg6: #22222f;
+	--color-dt1: white;
+	--color-dt2: black;
+	--color-dt3: #cccccc;
 
-    --color-lbg: #fffafa;
-    --color-lbg2: white;
-    --color-lbg3: white;
-    --color-lbg4: #fafaf8;
-    --color-lbg5: white;
-    --color-lbg6: #cccccc;
-    --color-lt1: black;
-    --color-lt2: white;
-    --color-lt3: #555555;
-
+	--color-lbg: #fffafa;
+	--color-lbg2: white;
+	--color-lbg3: white;
+	--color-lbg4: #fafaf8;
+	--color-lbg5: white;
+	--color-lbg6: #cccccc;
+	--color-lt1: black;
+	--color-lt2: white;
+	--color-lt3: #555555;
 }

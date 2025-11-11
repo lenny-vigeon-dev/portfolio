@@ -1,54 +1,45 @@
 <script lang="ts">
-    import "$/app.css"
+	import '$/app.css';
 
-    import {
-        s,
-        ws
-    } from "$utils/styles";
+	import { onMount } from 'svelte';
 
-    import { onMount } from "svelte";
+	import Url from '../icons/Url.svelte';
 
-    import Url from "../icons/Url.svelte";
+	let iconSize: number = $state(16);
 
-    let iconSize: number = $state(16);
-    const gap2: string = s("gap", 2);
+	interface LinkProps {
+		title: string;
+		url: string;
+		target?: string;
+		tabindex?: number;
+		_class?: string;
+	}
 
-    interface LinkProps {
-        title: string;
-        url: string;
-        target?: string;
-        tabindex?: number;
-        _class?: string;
-    }
+	let { title, url, target = '_blank', tabindex = 0, _class = '' }: LinkProps = $props();
 
-    let {
-        title,
-        url,
-        target = "_blank",
-        tabindex = 0,
-        _class = ""
-    }: LinkProps = $props();
-
-    function resizeDependentFunctions() {
-        // Update icon size on resize
-        // console.log(window.innerWidth)
-        iconSize = ws(16);
-    }
+	function resizeDependentFunctions() {
+		// Update icon size on resize
+		// These values are now static - consider using CSS for responsive sizing
+		iconSize = 16;
+	}
 
 	onMount(() => {
-        resizeDependentFunctions();
+		resizeDependentFunctions();
 		window.addEventListener('resize', resizeDependentFunctions);
 		return () => {
-            window.removeEventListener('resize', resizeDependentFunctions);
-        };
+			window.removeEventListener('resize', resizeDependentFunctions);
+		};
 	});
-
 </script>
 
-<a href={url} target={target} tabindex={tabindex}
-class={"flex flex-row items-center inline-center \
-text-lt3 dark:text-dt3 hover:underline" +
-gap2 + _class}>
-    <p>{title}</p>
-    <Url size={iconSize} />
+<a
+	href={url}
+	{target}
+	{tabindex}
+	class={'inline-center flex flex-row items-center ' +
+		'gap-2 text-lt3 hover:underline dark:text-dt3 ' +
+		_class}
+>
+	<p>{title}</p>
+	<Url size={iconSize} />
 </a>
