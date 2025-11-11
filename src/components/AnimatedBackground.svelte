@@ -42,12 +42,14 @@
 	let borderExtra: number = 100;
 
 	function createParticle(): Particle {
+		const width = parseFloat(canvas.style.width) || canvas.width;
+		const height = parseFloat(canvas.style.height) || canvas.height;
 		return {
-			x: Math.random() * canvas.width,
-			y: Math.random() * canvas.height,
-			dx: (Math.random() - 0.5) * (speed / FPS) * canvas.height,
-			dy: (Math.random() - 0.5) * (speed / FPS) * canvas.height,
-			size: Math.random() * 3 + 1,
+			x: Math.random() * width,
+			y: Math.random() * height,
+			dx: (Math.random() - 0.5) * (speed / FPS) * height,
+			dy: (Math.random() - 0.5) * (speed / FPS) * height,
+			size: Math.random() * 4 + 2,
 			opacity: Math.random() * 0.5 + 0.3
 		};
 	}
@@ -67,15 +69,18 @@
 			return;
 		}
 
+		const width = parseFloat(canvas.style.width) || canvas.width;
+		const height = parseFloat(canvas.style.height) || canvas.height;
+
 		particles.forEach((particle) => {
 			particle.x += particle.dx;
 			particle.y += particle.dy;
 
 			// Wrap around edges
-			if (particle.x < -borderExtra) particle.x = canvas.width + borderExtra;
-			if (particle.x > canvas.width + borderExtra) particle.x = -borderExtra;
-			if (particle.y < -borderExtra) particle.y = canvas.height + borderExtra;
-			if (particle.y > canvas.height + borderExtra) particle.y = -borderExtra;
+			if (particle.x < -borderExtra) particle.x = width + borderExtra;
+			if (particle.x > width + borderExtra) particle.x = -borderExtra;
+			if (particle.y < -borderExtra) particle.y = height + borderExtra;
+			if (particle.y > height + borderExtra) particle.y = -borderExtra;
 		});
 	}
 
@@ -87,8 +92,12 @@
 		} else {
 			return; // Skip frame if too soon
 		}
+
+		const width = parseFloat(canvas.style.width) || canvas.width;
+		const height = parseFloat(canvas.style.height) || canvas.height;
+
 		// Clear canvas
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		ctx.clearRect(0, 0, width, height);
 
 		// Draw particles
 		ctx.fillStyle = `rgba(${r}, ${g}, ${b}, 0.5)`;
@@ -105,8 +114,8 @@
 		// ctx.fill();
 
 		let particlesCluster: Particle[][][] = [];
-		const w = Math.ceil(canvas.width / clusterSize);
-		const h = Math.ceil(canvas.height / clusterSize);
+		const w = Math.ceil(width / clusterSize);
+		const h = Math.ceil(height / clusterSize);
 		for (let i = 0; i < w; i++) {
 			particlesCluster.push([]);
 			for (let j = 0; j < h; j++) particlesCluster[i].push([]);
@@ -170,17 +179,50 @@
 			}
 		}
 
-		let prevOpacity = 0;
-		connections.sort((a, b) => b.opacity - a.opacity);
+	let prevOpacity = 0;
+	connections.sort((a, b) => b.opacity - a.opacity);
+	connections.forEach((conn) => {
+		ctx.beginPath();
+		ctx.moveTo(conn.x, conn.y);
+		ctx.lineTo(conn.x2, conn.y2);
+		if (prevOpacity !== conn.opacity) {
+			ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${(conn.opacity / opacityStep) * 0.4})`;
+		}
+		ctx.stroke();
+		prevOpacity = conn.opacity;
+	});
+
+		// Calculate average opacity for each particle
+		const particleConnections = new Map<Particle, number[]>();
+		particles.forEach((particle) => {
+			particleConnections.set(particle, []);
+		});
+
 		connections.forEach((conn) => {
-			ctx.beginPath();
-			ctx.moveTo(conn.x, conn.y);
-			ctx.lineTo(conn.x2, conn.y2);
-			if (prevOpacity !== conn.opacity) {
-				ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${(conn.opacity / opacityStep) * 0.4})`;
+			// Find particles that match the connection endpoints
+			particles.forEach((particle) => {
+				if (particle.x === conn.x && particle.y === conn.y) {
+					particleConnections.get(particle)?.push(conn.opacity);
+				}
+				if (particle.x === conn.x2 && particle.y === conn.y2) {
+					particleConnections.get(particle)?.push(conn.opacity);
+				}
+			});
+		});
+
+		// Draw average opacity on each particle
+		particles.forEach((particle) => {
+			const opacities = particleConnections.get(particle) || [];
+			if (opacities.length > 0) {
+				const avgOpacity = opacities.reduce((sum, op) => sum + op, 0) / opacities.length;
+				const displayValue = ((avgOpacity / opacityStep) * 0.4).toFixed(2);
+
+				ctx.fillStyle = `rgba(128,128,128, 0.6)`;
+				ctx.font = `${particle.size * 0.8 * particleScale}px sans-serif`;
+				ctx.textAlign = 'center';
+				ctx.textBaseline = 'middle';
+				ctx.fillText(displayValue, particle.x, particle.y);
 			}
-			ctx.stroke();
-			prevOpacity = conn.opacity;
 		});
 
 		// console.log(`Frame drawn in ${performance.now() - lastTime}ms | ${check}`);
@@ -199,14 +241,27 @@
 		const width = Math.min(window.innerWidth, document.documentElement.clientWidth);
 		const height = Math.min(window.innerHeight, document.documentElement.clientHeight);
 
-		canvas.width = width;
-		canvas.height = height;
-		horizontal_ratio = canvas.height ? canvas.width / canvas.height : 1;
-		vertical_ratio = canvas.width ? canvas.height / canvas.width : 1;
-		maxDistance = canvas.height / 9;
-		particleScale = canvas.height / 500;
-		borderExtra = canvas.height / 10;
-		// console.log(`Resizing canvas to ${canvas.width}x${canvas.height} with ratios ${horizontal_ratio}, ${vertical_ratio}, particleScale: ${particleScale}, maxDistance: ${maxDistance}`);
+		// Get device pixel ratio for sharp rendering at any zoom level
+		const dpr = window.devicePixelRatio || 1;
+
+		// Set display size (css pixels)
+		canvas.style.width = `${width}px`;
+		canvas.style.height = `${height}px`;
+
+		// Set actual size in memory (scaled to account for extra pixel density)
+		canvas.width = width * dpr;
+		canvas.height = height * dpr;
+
+		// Scale all drawing operations by the dpr
+		ctx.scale(dpr, dpr);
+
+		// Use CSS dimensions for calculations
+		horizontal_ratio = height ? width / height : 1;
+		vertical_ratio = width ? height / width : 1;
+		maxDistance = height / 9;
+		particleScale = height / 500;
+		borderExtra = height / 10;
+		// console.log(`Resizing canvas to ${canvas.width}x${canvas.height} (${width}x${height} CSS) with dpr ${dpr}, ratios ${horizontal_ratio}, ${vertical_ratio}, particleScale: ${particleScale}, maxDistance: ${maxDistance}`);
 
 		initParticles();
 	}
