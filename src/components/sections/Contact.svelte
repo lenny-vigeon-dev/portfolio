@@ -147,7 +147,6 @@ py-[5%] transition-all duration-300"
 								name="user_name"
 								bind:value={senderName}
 								required
-								tabindex={tabIndex}
 							/>
 							<Input
 								title={rm.email()}
@@ -157,7 +156,6 @@ py-[5%] transition-all duration-300"
 								type="email"
 								bind:value={senderEmail}
 								required
-								tabindex={tabIndex}
 							/>
 						</div>
 						<Input
@@ -167,7 +165,6 @@ py-[5%] transition-all duration-300"
 							name="subject"
 							bind:value={senderSubject}
 							required
-							tabindex={tabIndex}
 						/>
 						<TextArea
 							title={rm.message()}
@@ -176,13 +173,11 @@ py-[5%] transition-all duration-300"
 							name="message"
 							bind:value={senderMessage}
 							required
-							tabindex={tabIndex}
 						/>
 						<Button
 							text={sending ? rm.sending_msg() : rm.send_msg()}
 							type="submit"
 							disabled={sending || !emailJsConfigured}
-							tabindex={tabIndex}
 						>
 							{#snippet main()}
 								<Send size={icon_size16} />
