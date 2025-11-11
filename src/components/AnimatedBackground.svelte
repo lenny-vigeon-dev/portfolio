@@ -28,18 +28,21 @@
 	let maxDistance: number = 100;
 	let particleScale: number = 1;
 	let lastTime: number = 0;
+	let borderExtra: number = 100;
+	let prevWidth: number = 0;
+	let prevHeight: number = 0;
+	const opacityStep: number = 30;
+	let r: number = 139;
+	let g: number = 92;
+	let b: number = 246;
+	const nb_particles: number = 250;
 
 	// FPS counter variables
 	const FPS: number = 30;
 	const frameTime: number = 1000 / FPS; // Time per frame in milliseconds
 	let horizontal_ratio: number = 1;
 	let vertical_ratio: number = 1;
-	const speed = 0.02;
-	const opacityStep: number = 30;
-	let r: number = 139;
-	let g: number = 92;
-	let b: number = 246;
-	let borderExtra: number = 100;
+	const speed = 50;
 
 	function createParticle(): Particle {
 		const width = parseFloat(canvas.style.width) || canvas.width;
@@ -47,20 +50,47 @@
 		return {
 			x: Math.random() * width,
 			y: Math.random() * height,
-			dx: (Math.random() - 0.5) * (speed / FPS) * height,
-			dy: (Math.random() - 0.5) * (speed / FPS) * height,
+			dx: (Math.random() - 0.5) * (speed / FPS),
+			dy: (Math.random() - 0.5) * (speed / FPS),
 			size: Math.random() * 4 + 2,
 			opacity: Math.random() * 0.5 + 0.3
 		};
 	}
 
 	function initParticles() {
-		const particleCount = Math.floor(200 * horizontal_ratio);
+		const particleCount = Math.floor(nb_particles * horizontal_ratio);
 		// console.log(`Initializing ${particleCount} particles`);
 
 		particles = [];
 		for (let i = 0; i < particleCount; i++) {
 			particles.push(createParticle());
+		}
+	}
+
+	function updateParticleCount(width: number, height: number) {
+		const targetCount = Math.floor(nb_particles * horizontal_ratio);
+
+		// Remove particles that are far outside the new canvas boundaries
+		// Keep some buffer zone to avoid jarring removals
+		const removalBuffer = Math.max(borderExtra * 2, 50);
+		particles = particles.filter(
+			(particle) =>
+				particle.x >= -removalBuffer &&
+				particle.x <= width + removalBuffer &&
+				particle.y >= -removalBuffer &&
+				particle.y <= height + removalBuffer
+		);
+
+		// Add or remove particles to match target count
+		if (particles.length < targetCount) {
+			// Add new particles
+			const toAdd = targetCount - particles.length;
+			for (let i = 0; i < toAdd; i++) {
+				particles.push(createParticle());
+			}
+		} else if (particles.length > targetCount) {
+			// Remove excess particles (remove from the end)
+			particles = particles.slice(0, targetCount);
 		}
 	}
 
@@ -134,6 +164,7 @@
 
 		let check: number = 0;
 		let connections: Connections[] = [];
+		const max_link: number = 6
 		for (let x = 0; x < w; x++) {
 			for (let y = 0; y < h; y++) {
 				const cluster = particlesCluster[x][y];
@@ -155,6 +186,7 @@
 
 				for (const p of cluster) {
 					for (const [cx, cy] of clusterList) {
+						let link: number = 0;
 						const subCluster = particlesCluster[cx][cy];
 						if (subCluster.length === 0) continue;
 						for (const p2 of subCluster) {
@@ -171,26 +203,28 @@
 									y2: p2.y,
 									opacity: Math.floor(opacity * opacityStep)
 								});
+								link++;
 							}
 							check++;
+							if (link >= max_link) break;
 						}
 					}
 				}
 			}
 		}
 
-	let prevOpacity = 0;
-	connections.sort((a, b) => b.opacity - a.opacity);
-	connections.forEach((conn) => {
-		ctx.beginPath();
-		ctx.moveTo(conn.x, conn.y);
-		ctx.lineTo(conn.x2, conn.y2);
-		if (prevOpacity !== conn.opacity) {
-			ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${(conn.opacity / opacityStep) * 0.4})`;
-		}
-		ctx.stroke();
-		prevOpacity = conn.opacity;
-	});
+		let prevOpacity = 0;
+		connections.sort((a, b) => b.opacity - a.opacity);
+		connections.forEach((conn) => {
+			ctx.beginPath();
+			ctx.moveTo(conn.x, conn.y);
+			ctx.lineTo(conn.x2, conn.y2);
+			if (prevOpacity !== conn.opacity) {
+				ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${(conn.opacity / opacityStep) * 0.4})`;
+			}
+			ctx.stroke();
+			prevOpacity = conn.opacity;
+		});
 
 		// Calculate average opacity for each particle
 		const particleConnections = new Map<Particle, number[]>();
@@ -213,16 +247,14 @@
 		// Draw average opacity on each particle
 		particles.forEach((particle) => {
 			const opacities = particleConnections.get(particle) || [];
-			if (opacities.length > 0) {
-				const avgOpacity = opacities.reduce((sum, op) => sum + op, 0) / opacities.length;
-				const displayValue = ((avgOpacity / opacityStep) * 0.4).toFixed(2);
+			const avgOpacity = opacities.reduce((sum, op) => sum + op, 0) / opacities.length;
+			const displayValue: string = (((avgOpacity / opacityStep) || 0.0) * 0.8).toFixed(2);
 
-				ctx.fillStyle = `rgba(128,128,128, 0.6)`;
-				ctx.font = `${particle.size * 0.8 * particleScale}px sans-serif`;
-				ctx.textAlign = 'center';
-				ctx.textBaseline = 'middle';
-				ctx.fillText(displayValue, particle.x, particle.y);
-			}
+			ctx.fillStyle = `rgba(128,128,128, 0.6)`;
+			ctx.font = `${particle.size * 0.8 * particleScale}px sans-serif`;
+			ctx.textAlign = 'center';
+			ctx.textBaseline = 'middle';
+			ctx.fillText(displayValue, particle.x, particle.y);
 		});
 
 		// console.log(`Frame drawn in ${performance.now() - lastTime}ms | ${check}`);
@@ -240,6 +272,8 @@
 		// Use document.documentElement for more reliable viewport size
 		const width = Math.min(window.innerWidth, document.documentElement.clientWidth);
 		const height = Math.min(window.innerHeight, document.documentElement.clientHeight);
+
+		// console.log(`Resizing canvas to ${width}x${height} CSS pixels | Previous size: ${prevWidth}x${prevHeight}`);
 
 		// Get device pixel ratio for sharp rendering at any zoom level
 		const dpr = window.devicePixelRatio || 1;
@@ -263,7 +297,18 @@
 		borderExtra = height / 10;
 		// console.log(`Resizing canvas to ${canvas.width}x${canvas.height} (${width}x${height} CSS) with dpr ${dpr}, ratios ${horizontal_ratio}, ${vertical_ratio}, particleScale: ${particleScale}, maxDistance: ${maxDistance}`);
 
-		initParticles();
+		if (width === prevWidth && height === prevHeight) {
+			return; // No need to resize if dimensions haven't changed
+		} else if (width !== prevWidth && height !== prevHeight) {
+			initParticles();
+		} else {
+			updateParticleCount(width, height);
+		}
+
+
+
+		prevWidth = width;
+		prevHeight = height;
 	}
 
 	onMount(() => {
