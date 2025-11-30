@@ -294,7 +294,7 @@ transition-all duration-300 dark:bg-dbg3/90"
 					skills={['Vue.js', 'HTML5', 'TypeScript', 'Vite', 'Local Storage', 'CSS3']}
 					description={rm.toobo_description()}
 					githubUrl="https://github.com/lenny-vigeon-dev/Toobo"
-					projectUrl="/"
+					projectUrl="https://toobo-hqoknaw1t-lennys-projects-4f8ace83.vercel.app/"
 					tabindex={tabIndex}
 				/>
 				<ProjectCard
