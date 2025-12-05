@@ -40,7 +40,10 @@
 	"dependencies": {
 		"@emailjs/browser": "^4.4.1",
 		"@inlang/paraglide-js": "^2.0.0",
-		"path": "^0.12.7"
+		"@mediapipe/tasks-vision": "0.10.22-rc.20250304",
+		"onnxruntime-web": "^1.23.2",
+		"path": "^0.12.7",
+		"vite-plugin-wasm": "^3.5.0"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [

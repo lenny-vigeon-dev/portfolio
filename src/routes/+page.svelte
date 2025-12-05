@@ -284,7 +284,8 @@ transition-all duration-300 dark:bg-dbg3/90"
 					skills={['Svelte', 'Python', 'ONNX', 'Pytorch', 'mediapipe', 'OpenCV', 'Transformer']}
 					description={rm.fsl_recognizer_description()}
 					githubUrl="https://github.com/EIP-TEK89/trio-signo-ai"
-					projectUrl="/"
+					projectUrl="/sign-recognizer"
+                    projectUrlTarget="_self"
 					tabindex={tabIndex}
 					collaborators={[JJA]}
 				/>

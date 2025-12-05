@@ -22,6 +22,7 @@
 		description: string;
 		githubUrl?: string;
 		projectUrl?: string;
+		projectUrlTarget?: string;
 		collaborators?: Collaborator[];
 		tabindex?: number;
 		bigSize?: boolean;
@@ -34,6 +35,7 @@
 		description,
 		githubUrl,
 		projectUrl,
+		projectUrlTarget = '_blank',
 		collaborators,
 		tabindex = 0,
 		bigSize = false
@@ -85,7 +87,7 @@
 							</ZoomButton>
 						{/if}
 						{#if projectUrl}
-							<ZoomButton href={projectUrl} target="_blank" {tabindex}>
+							<ZoomButton href={projectUrl} target={projectUrlTarget} {tabindex}>
 								{#snippet main()}
 									<Url size={iconSize} />
 								{/snippet}

@@ -10,7 +10,7 @@
 		tabindex?: number;
 	}
 
-	let { onclick, href, target, main, _class = '', tabindex = 0 }: ButtonProps = $props();
+	let { onclick, href, target = '_blank', main, _class = '', tabindex = 0 }: ButtonProps = $props();
 
 	// Handle click to remove focus after clicking
 	function handleClick(event: MouseEvent) {
