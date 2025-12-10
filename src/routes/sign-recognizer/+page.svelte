@@ -4,6 +4,7 @@
 	import type { HandLandmarkerResult } from '@mediapipe/tasks-vision';
 	import { browser } from '$app/environment';
 	import { SignRecognizer, SignDetector } from '$lib/ai/SignModels';
+	import BackgroundHandAnimation from '../../components/BackgroundHandAnimation.svelte';
 
 	let video: HTMLVideoElement;
 	let canvas: HTMLCanvasElement;
@@ -17,6 +18,24 @@
 	let predictionResult = $state<{ label: string; score: number } | null>(null);
 	let detectionScore = $state<number | null>(null);
 	let isPredicting = false;
+
+	function getRandomLetter(exclude?: string) {
+		const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		let letter = letters[Math.floor(Math.random() * letters.length)];
+		if (exclude && letter === exclude) return getRandomLetter(exclude);
+		return letter;
+	}
+
+	let requestedSign = $state(getRandomLetter());
+	let matchCount = $state(0);
+	let isAnimating = $state(false);
+
+	function triggerAnimation() {
+		isAnimating = true;
+		setTimeout(() => {
+			isAnimating = false;
+		}, 300);
+	}
 
 	onMount(async () => {
 		if (!browser) return;
@@ -132,6 +151,11 @@
                         .then((recResult) => {
                             if (recResult) {
                                 predictionResult = { label: recResult.label, score: recResult.score };
+								if (predictionResult.label.toUpperCase() === requestedSign) {
+									matchCount++;
+									triggerAnimation();
+									requestedSign = getRandomLetter(requestedSign);
+								}
                             }
                             isPredicting = false;
                         })
@@ -199,12 +223,15 @@
 	}
 </script>
 
-<div class="flex min-h-screen flex-col items-center justify-center p-4">
+<!-- <BackgroundHandAnimation /> -->
+
+<div class="relative z-10 flex min-h-screen flex-col items-center justify-center p-4">
 	<h1 class="mb-4 text-3xl font-bold">Hand Landmark Detection</h1>
 
-	<div
-		class="relative min-h-[240px] min-w-[320px] overflow-hidden rounded-lg bg-black shadow-xl"
-	>
+	<div class="flex flex-col items-center justify-center gap-8 md:flex-row">
+		<div
+			class="relative min-h-[240px] min-w-[320px] overflow-hidden rounded-lg bg-black shadow-xl"
+		>
 		<!-- svelte-ignore a11y_media_has_caption -->
 		<video bind:this={video} class="block h-full w-full" autoplay playsinline></video>
 		<canvas
@@ -228,6 +255,23 @@
 				Loading model...
 			</div>
 		{/if}
+	</div>
+
+	{#if webcamRunning}
+		<div
+			class="flex min-w-[200px] flex-col items-center justify-center rounded-lg bg-gray-800 p-6 shadow-xl"
+		>
+			<h2 class="mb-2 text-xl font-bold text-white">Please do sign:</h2>
+			<div
+				class="mb-4 text-9xl font-bold text-blue-500 transition-all duration-300 {isAnimating
+					? 'scale-125 rotate-12 text-green-500'
+					: ''}"
+			>
+				{requestedSign}
+			</div>
+			<p class="text-gray-300">Matches: {matchCount}</p>
+		</div>
+	{/if}
 	</div>
 
 	{#if webcamRunning}
