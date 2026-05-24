@@ -1,0 +1,98 @@
+# Lenny Vigeon - MLOps Developer
+
+## Profile
+Lenny Vigeon is an MLOps Developer and passionate creator who bridges the gap between cutting-edge artificial intelligence and scalable web technologies. With expertise spanning fullstack web development and AI/machine learning, he builds intelligent, end-to-end solutions that solve real-world problems.
+
+## Mission
+Building intelligent applications that bridge the gap between cutting-edge AI and scalable web technologies, with a focus on performance, type safety, and user-centered design.
+
+## Philosophy
+Technology should augment human capabilities, not replace them. Clean code, scalable architecture, and user-centered design are the foundation of every project.
+
+## Core Expertise
+
+### Frontend Development
+- Svelte 5 / SvelteKit
+- TypeScript
+- Tailwind CSS
+- Responsive & performance-optimized design
+- Accessibility and user experience
+
+### Backend Development
+- Node.js
+- Full-stack web applications
+- API design and implementation
+- Server-side rendering
+
+### AI & Machine Learning
+- Transformer models for computer vision
+- Sign Language recognition (French Sign Language)
+- ONNX Runtime (ML model inference)
+- MediaPipe integration for vision tasks
+- Machine learning model optimization
+
+### DevOps, Database & Cloud
+- Deployment and production environments
+- Cloud infrastructure management
+- Performance optimization
+
+### Tools & Platforms
+- Vite build tool
+- ESLint and code quality
+- Git version control
+- pnpm package management
+- Inlang for i18n (internationalization)
+
+## Notable Projects
+
+### 1. French Sign Language Recognizer
+A transformer model for recognizing French Sign Language fingerspelling (Sign Language Alphabet). Demonstrates expertise in deep learning, computer vision, and bringing AI models to web applications. Integrates ONNX Runtime and MediaPipe for real-time inference.
+
+### 2. Toobo Weather App
+A minimalist web application for displaying real-time weather and upcoming days for one or more given locations. Features include:
+- Real-time weather data
+- Local storage persistence
+- Fast, clear, and easy-to-use interface
+- Responsive and clean design
+- Performance optimization
+
+### 3. Personal Portfolio
+A fullstack web application showcasing projects and skills. Built with SvelteKit, TypeScript, and Tailwind CSS. Features:
+- Responsive design with animated components
+- Multi-language support (English, French, Korean)
+- Contact form with EmailJS integration
+- Dark/light theme support
+- Performance-optimized build
+
+### 4. Originl
+A responsive showcase website for a reflexologist. Demonstrates ability to create:
+- Lightweight, performant websites
+- Professional business showcases
+- Easy-to-maintain solutions
+- Client-focused design
+
+### 5. Wuriowire
+A Game Jam project developed in 3 days, showcasing rapid prototyping and creative problem-solving skills.
+
+## Technical Stack
+- **Languages**: TypeScript, Python, JavaScript
+- **Frontend**: Svelte, SvelteKit, Tailwind CSS, Vite
+- **AI/ML**: ONNX Runtime, MediaPipe, Transformer models
+- **Internationalization**: Inlang Paraglide
+- **Package Manager**: pnpm
+- **Code Quality**: ESLint, Prettier, TypeScript
+- **Build Tools**: Vite, SvelteKit
+
+## Areas of Interest
+- Machine Learning Operations (MLOps)
+- Full-stack web development with AI integration
+- Performance optimization
+- Type-safe applications
+- Accessible and inclusive design
+- Open-source contributions
+
+## Contact & Availability
+- Open to: Permanent contracts, Fixed-term contracts, Freelance projects
+- Work arrangements: Remote, Hybrid, On-site
+- Location: Paris, Île-de-France
+- Mobility: Category B driving licence
